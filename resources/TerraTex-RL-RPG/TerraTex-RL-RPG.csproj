@@ -46,7 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="TerraTex_RL_RPG.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -78,5 +78,11 @@
     <TypeScriptCompile Include="types-gt-mp\System.Drawing.d.ts" />
     <TypeScriptCompile Include="types-gt-mp\System.Windows.Forms.d.ts" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Languages\de_client.xml" />
+    <Content Include="Languages\de_server.xml" />
+    <Content Include="meta.xml" />
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

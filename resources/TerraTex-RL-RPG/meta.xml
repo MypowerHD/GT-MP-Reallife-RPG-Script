@@ -6,8 +6,8 @@
         type="gamemode" />
 
 
-  <config src="Language/de_client.xml" type="client" />
-  <config src="Language/de_server.xml" type="server" />
+  <config src="Languages/de_client.xml" type="client" />
+  <config src="Languages/de_server.xml" type="server" />
   
   <script src="TerraTex_RL_RPG.cs" type="server" lang="csharp" />
   
