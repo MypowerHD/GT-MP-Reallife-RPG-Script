@@ -1,0 +1,14 @@
+﻿<meta>
+  <info name="TerraTex Roleplay / Reallife Script"
+        description="A mixed roleplay and reallife script"
+        author="TerraTex-Community, Geramy92"
+        version="0.0.1"
+        type="gamemode" />
+
+
+  <config src="Language/de_client.xml" type="client" />
+  <config src="Language/de_server.xml" type="server" />
+  
+  <script src="TerraTex_RL_RPG.cs" type="server" lang="csharp" />
+  
+</meta>
