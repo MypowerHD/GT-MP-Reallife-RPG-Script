@@ -1,20 +1,23 @@
-if (env.BRANCH_NAME == 'develop') {
-	pipeline {
-		agent any
-		stage('Deploy sitesite') {
-			steps {
-				echo 'Branch: develop'
-			}
-		}		
-	}
-}
-if (env.BRANCH_NAME == 'master') {
-	pipeline {
-		agent any
-		stage('Deploy sitesite') {
-			steps {
-				echo 'Branch: Master'
-			}
+pipeline {
+  agent any
+  
+	stage('Deploy Dev') {	
+		steps {
+			when {
+                branch 'develop'
+            }
+                echo 'Deploying dev'
+            }
 		}
 	}
+	stage('Deploy Master') {
+		steps {
+			when {
+                branch 'master'
+            }
+                echo 'Deploying master'
+            }
+		}
+	}
+	
 }
