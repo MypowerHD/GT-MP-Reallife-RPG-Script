@@ -3,7 +3,11 @@ node {
 		if (env.BRANCH_NAME == 'master') {
 			echo 'master'
 		} else {
-			echo 'develop'
+			if (env.BRANCH_NAME.startsWith('PR-')) {
+				echo env.BRANCH_NAME
+			} else {
+				echo 'develop'			
+			}
 		}
 	}
 }
