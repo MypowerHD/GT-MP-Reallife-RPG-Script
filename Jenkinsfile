@@ -2,22 +2,12 @@ pipeline {
   agent any
   
 	stage('Deploy Dev') {	
-		steps {
-			when {
-                branch 'develop'
-            }
-                echo 'Deploying dev'
-            }
+		steps {			
+			if (env.BRANCH_NAME == 'master') {
+				echo 'master'
+			} else {
+				echo 'develop'
+			}
 		}
 	}
-	stage('Deploy Master') {
-		steps {
-			when {
-                branch 'master'
-            }
-                echo 'Deploying master'
-            }
-		}
-	}
-	
 }
