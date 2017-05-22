@@ -1,11 +1,9 @@
 node {
-	stage('Deploy Dev') {	
-		steps {			
-			if (env.BRANCH_NAME == 'master') {
-				echo 'master'
-			} else {
-				echo 'develop'
-			}
+	steps {			
+		if (env.BRANCH_NAME == 'master') {
+			echo 'master'
+		} else {
+			echo 'develop'
 		}
 	}
 }
