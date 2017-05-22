@@ -1,19 +1,20 @@
-pipeline {
-  agent any
-  
-	if (env.BRANCH_NAME == 'develop') {
-        stage('Deploy sitesite') {
-            steps {
+if (env.BRANCH_NAME == 'develop') {
+	pipeline {
+		agent any
+		stage('Deploy sitesite') {
+			steps {
 				echo 'Branch: develop'
 			}
-        }
-    }
-	if (env.BRANCH_NAME == 'master') {
-        stage('Deploy sitesite') {
-            steps {
+		}		
+	}
+}
+if (env.BRANCH_NAME == 'master') {
+	pipeline {
+		agent any
+		stage('Deploy sitesite') {
+			steps {
 				echo 'Branch: Master'
 			}
-        }
-    }
-	
+		}
+	}
 }
