@@ -5,7 +5,7 @@ node {
 				echo env.BRANCH_NAME
 			} else {
 				withSonarQubeEnv('TerraTex SonarQube') {
-					sh "${tool 'SonarQubeScanner'}/bin/sonar-scanner -Dsonar.projectVersion=${BUILD_DISPLAY_NAME}"
+					sh "${tool 'SonarQubeScanner'}/bin/sonar-scanner -Dsonar.projectVersion=${BUILD_DISPLAY_NAME} -X"
 				}
 				timeout(time: 1, unit: 'HOURS') {
 					def qg = waitForQualityGate()
