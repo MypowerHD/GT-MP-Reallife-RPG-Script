@@ -1,6 +1,4 @@
-pipeline {
-  agent any
-  
+node {
 	stage('Deploy Dev') {	
 		steps {			
 			if (env.BRANCH_NAME == 'master') {
