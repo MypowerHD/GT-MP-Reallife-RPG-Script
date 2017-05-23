@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{385EE243-0DD0-4FBF-9D33-376E50520874}</ProjectGuid>
+    <ProjectGuid>{D3BBE288-80DD-4469-97C7-A23B344F9F43}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>TerraTex_RL_RPG</RootNamespace>
-    <AssemblyName>TerraTex-RL-RPG</AssemblyName>
+    <RootNamespace>LocalTelnetAdmin</RootNamespace>
+    <AssemblyName>LocalTelnetAdmin</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -46,16 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="TerraTex_RL_RPG.cs" />
+    <Compile Include="Commands\Help.cs" />
+    <Compile Include="LocalTelnetAdmin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Languages\de_client.xml" />
-    <Content Include="Languages\de_server.xml" />
-    <Content Include="meta.xml" />
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="types-gt-mp\Declarations.d.ts" />
@@ -85,6 +81,9 @@
     <TypeScriptCompile Include="types-gt-mp\System.d.ts" />
     <TypeScriptCompile Include="types-gt-mp\System.Drawing.d.ts" />
     <TypeScriptCompile Include="types-gt-mp\System.Windows.Forms.d.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="meta.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

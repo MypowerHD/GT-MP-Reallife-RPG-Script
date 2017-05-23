@@ -1,0 +1,20 @@
+﻿<meta>
+  <info name="LocalTelnetAdmin"
+         description="Provides a small Telnet server to connect via local Telnet client to administrate server"
+         author="TerraTex-Community, Geramy92"
+         version="0.0.1"
+         type="script" />
+
+  
+    <script src="LocalTelnetAdmin.cs" type="server" lang="csharp" />
+  
+    <script src="Commands/Command.cs" type="server" lang="csharp" />
+    <script src="Commands/Help.cs" type="server" lang="csharp" />
+    <script src="Commands/ResourceCommands.cs" type="server" lang="csharp" />
+    <script src="ConsoleColors.cs" type="server" lang="csharp" />
+
+    <settings>
+      <setting name="socketport" value="9090" default="9090" description="Port for Local Telnet Socket. Minimum: 1000" />
+    </settings>
+  
+</meta>
