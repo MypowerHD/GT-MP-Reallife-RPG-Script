@@ -93,7 +93,7 @@ namespace LocalTelnetAdmin.Commands
 
         public void ListRunningResources(NetworkStream stream, String[] args)
         {
-            string[] resourcesList = API.getAllResources(); 
+            string[] resourcesList = API.getRunningResources(); 
 
             foreach (String resource in resourcesList) //Do a basic foreach loop through our array
             {
