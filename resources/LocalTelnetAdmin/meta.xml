@@ -1,0 +1,11 @@
+﻿<meta>
+  <info name="LocalTelnetAdmin"
+         description="Provides a small Telnet server to connect via local Telnet client to administrate server"
+         author="TerraTex-Community, Geramy92"
+         version="0.0.1"
+         type="script" />
+
+  
+    <script src="LocalTelnetAdmin.cs" type="server" lang="csharp" />
+  
+</meta>
