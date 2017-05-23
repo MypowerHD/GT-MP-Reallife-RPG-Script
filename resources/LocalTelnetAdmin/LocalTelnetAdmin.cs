@@ -120,7 +120,7 @@ namespace LocalTelnetAdmin
 
         public static void SendResponse(NetworkStream stream, String response)
         {
-            byte[] msg = System.Text.Encoding.ASCII.GetBytes(response + ConsoleColors.WHITE + "\n");
+            byte[] msg = System.Text.Encoding.ASCII.GetBytes(response + ConsoleColors.WHITE + "\n\r");
             stream.Write(msg, 0, msg.Length);
         }
 
