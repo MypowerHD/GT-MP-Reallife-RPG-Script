@@ -114,7 +114,7 @@ namespace LocalTelnetAdmin
             finally
             {
                 // Stop listening for new clients.
-                server.Stop();
+                _server.Stop();
             }
         }
 
