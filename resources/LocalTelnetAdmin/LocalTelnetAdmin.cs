@@ -96,7 +96,7 @@ namespace LocalTelnetAdmin
                                     }
                                     else
                                     {
-                                        LocalTelnetAdmin.SendResponse(stream, "Cmd " + args[0] + " does not exist!");
+                                        LocalTelnetAdmin.SendResponse(stream, ConsoleColors.RED + "Cmd " + args[0] + " does not exist!");
                                     }
                                 }
                             }
@@ -120,7 +120,7 @@ namespace LocalTelnetAdmin
 
         public static void SendResponse(NetworkStream stream, String response)
         {
-            byte[] msg = System.Text.Encoding.ASCII.GetBytes(response + ConsoleColors.WHITE);
+            byte[] msg = System.Text.Encoding.ASCII.GetBytes(response + ConsoleColors.WHITE + "\n");
             stream.Write(msg, 0, msg.Length);
         }
 

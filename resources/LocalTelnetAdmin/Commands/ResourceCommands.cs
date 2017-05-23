@@ -10,9 +10,9 @@ namespace LocalTelnetAdmin.Commands
         public ResourceCommands()
         {
             LocalTelnetAdmin.RegisterNewCommand("stopresource", new Command("StopResource", "ResourceCommands"));
-            LocalTelnetAdmin.RegisterNewCommand("startResource", new Command("StartResource", "ResourceCommands"));
-            LocalTelnetAdmin.RegisterNewCommand("restartResource", new Command("RestartResource", "ResourceCommands"));
-            LocalTelnetAdmin.RegisterNewCommand("listRunningResources", new Command("ListRunningResources", "ResourceCommands"));
+            LocalTelnetAdmin.RegisterNewCommand("startresource", new Command("StartResource", "ResourceCommands"));
+            LocalTelnetAdmin.RegisterNewCommand("restartresource", new Command("RestartResource", "ResourceCommands"));
+            LocalTelnetAdmin.RegisterNewCommand("listrunningresources", new Command("ListRunningResources", "ResourceCommands"));
         }
 
         public void StopResource(NetworkStream stream, String[] args)
