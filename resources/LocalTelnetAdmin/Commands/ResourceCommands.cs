@@ -97,7 +97,7 @@ namespace LocalTelnetAdmin.Commands
 
             foreach (String resource in resourcesList) //Do a basic foreach loop through our array
             {
-                LocalTelnetAdmin.SendResponse(stream, "- " + API.getResourceName(resource));
+                LocalTelnetAdmin.SendResponse(stream, "- [" + resource + "] " + API.getResourceName(resource));
             }
 
         }
