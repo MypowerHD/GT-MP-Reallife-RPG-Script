@@ -33,12 +33,14 @@ namespace LocalTelnetAdmin
                 // Enter the listening loop. 
                 while (true)
                 {
-                    Console.Write("Waiting for a connection... ");
+                    Console.Write("Telnet Adminconnection can be recieved on: " + localAddr.ToString() + ":" + port);
 
                     // Perform a blocking call to accept requests. 
                     // You could also user server.AcceptSocket() here.
                     TcpClient client = server.AcceptTcpClient();
-                    Console.WriteLine("Hello!");
+
+                    String clientIp = ((IPEndPoint) client.Client.RemoteEndPoint).Address.ToString();
+                    Console.WriteLine("Recieved Adminconnection from " + clientIp);
 
                     data = null;
 
@@ -54,14 +56,17 @@ namespace LocalTelnetAdmin
                         data = System.Text.Encoding.ASCII.GetString(bytes, 0, i);
                         Console.WriteLine("Received: {0}", data);
 
+
+                        
+
                         // Process the data sent by the client.
-                        data = data.ToUpper();
+//                        data = data.ToUpper();
 
-                        byte[] msg = System.Text.Encoding.ASCII.GetBytes(data);
+//                        byte[] msg = System.Text.Encoding.ASCII.GetBytes(data);
 
-                        // Send back a response.
-                        stream.Write(msg, 0, msg.Length);
-                        Console.WriteLine("Sent: {0}", data);
+//                         Send back a response.
+//                        stream.Write(msg, 0, msg.Length);
+//                        Console.WriteLine("Sent: {0}", data);
                     }
 
                     // Shutdown and end connection
