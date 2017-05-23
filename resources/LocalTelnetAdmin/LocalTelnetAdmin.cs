@@ -18,7 +18,13 @@ namespace LocalTelnetAdmin
         {
             try
             {
-                Int32 port = 9090;
+                Int32 port = API.getResourceSetting<Int32>("LocalTelnetAdmin", "socketport");
+
+                if (port <= 1000)
+                {
+                    port = 9090;
+                }
+
                 IPAddress localAddr = IPAddress.Parse("127.0.0.1");
 
                 server = new TcpListener(localAddr, port);
