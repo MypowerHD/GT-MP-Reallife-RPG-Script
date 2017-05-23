@@ -38,7 +38,7 @@ namespace LocalTelnetAdmin.Commands
             }
             else
             {
-                LocalTelnetAdmin.SendResponse(stream, ConsoleColors.RED + "Error: No ResourceName sendet.");
+                LocalTelnetAdmin.SendResponse(stream, ConsoleColors.RED + "Error: No ResourceName sended.");
             }
         }
 
@@ -65,7 +65,7 @@ namespace LocalTelnetAdmin.Commands
             }
             else
             {
-                LocalTelnetAdmin.SendResponse(stream, ConsoleColors.RED + "Error: No ResourceName sendet.");
+                LocalTelnetAdmin.SendResponse(stream, ConsoleColors.RED + "Error: No ResourceName sended.");
             }
         }
 
@@ -82,12 +82,12 @@ namespace LocalTelnetAdmin.Commands
                 }
                 else
                 {
-                    LocalTelnetAdmin.SendResponse(stream, ConsoleColors.RED + "Error: No ResourceName sendet.");
+                    LocalTelnetAdmin.SendResponse(stream, ConsoleColors.RED + "Error: Resource " + args[0] + " does not exist.");
                 }
             }
             else
             {
-                LocalTelnetAdmin.SendResponse(stream, ConsoleColors.RED + "Error: No ResourceName sendet.");
+                LocalTelnetAdmin.SendResponse(stream, ConsoleColors.RED + "Error: No ResourceName sended.");
             }
         }
 
