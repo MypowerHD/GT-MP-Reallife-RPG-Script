@@ -23,6 +23,7 @@ node {
 	
 	stage('Deploy') {
 		if (env.BRANCH_NAME == 'master') {
+		
 			sh 'sed -i -- 's/9090/9091/g' resources/LocalTelnetAdmin/meta.xml'
 		
 			sh 'ssh root@terratex.eu "rmdir \\"D:/TerraTex/Spiele/GTMP/01_server/live/resources\\" /s /q"'
