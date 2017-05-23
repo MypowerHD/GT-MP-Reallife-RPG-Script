@@ -74,10 +74,10 @@ namespace LocalTelnetAdmin
                             // Translate data bytes to a ASCII string.
                             data = System.Text.Encoding.ASCII.GetString(bytes, 0, i);
                             data = data.Trim();
-                            Console.WriteLine("Received:{0}", data);
 
                             if (data.Length > 0)
                             {
+                                Console.WriteLine("Received from AdminSocket: {0}", data);
                                 String[] args = data.Split(' ');
                                 args[0] = args[0].ToLower();
 

@@ -105,6 +105,7 @@ namespace LocalTelnetAdmin.Commands
         private Boolean DoesResourceExist(String resourceName)
         {
             string[] resourcesList = API.getAllResources();
+
             return resourcesList.Contains(resourceName);
         }
     }
