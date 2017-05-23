@@ -24,21 +24,21 @@ namespace LocalTelnetAdmin.Commands
                     if (API.isResourceRunning(args[0]))
                     {
                         API.stopResource(args[0]);
-                        LocalTelnetAdmin.SendResponse(stream, "\u001B[0;32m" + "Success: Resource " + args[0] + " stopped successfully.");
+                        LocalTelnetAdmin.SendResponse(stream, ConsoleColors.GREEN + "Success: Resource " + args[0] + " stopped successfully.");
                     }
                     else
                     {
-                        LocalTelnetAdmin.SendResponse(stream, "\u001B[0;31m" + "Error: Resource " + args[0] + " is not running.");
+                        LocalTelnetAdmin.SendResponse(stream, ConsoleColors.RED + "Error: Resource " + args[0] + " is not running.");
                     }
                 }
                 else
                 {
-                    LocalTelnetAdmin.SendResponse(stream, "\u001B[0;31m" + "Error: Resource " + args[0] + " does not exist.");
+                    LocalTelnetAdmin.SendResponse(stream, ConsoleColors.RED + "Error: Resource " + args[0] + " does not exist.");
                 }
             }
             else
             {
-                LocalTelnetAdmin.SendResponse(stream, "\u001B[0;31m" + "Error: No ResourceName sendet.");
+                LocalTelnetAdmin.SendResponse(stream, ConsoleColors.RED + "Error: No ResourceName sendet.");
             }
         }
 
@@ -51,21 +51,21 @@ namespace LocalTelnetAdmin.Commands
                     if (!API.isResourceRunning(args[0]))
                     {
                         API.startResource(args[0]);
-                        LocalTelnetAdmin.SendResponse(stream, "\u001B[0;32m" + "Success: Resource " + args[0] + " started successfully.");
+                        LocalTelnetAdmin.SendResponse(stream, ConsoleColors.GREEN + "Success: Resource " + args[0] + " started successfully.");
                     }
                     else
                     {
-                        LocalTelnetAdmin.SendResponse(stream, "\u001B[0;31m" + "Error: Resource " + args[0] + " is already running.");
+                        LocalTelnetAdmin.SendResponse(stream, ConsoleColors.RED + "Error: Resource " + args[0] + " is already running.");
                     }
                 }
                 else
                 {
-                    LocalTelnetAdmin.SendResponse(stream, "\u001B[0;31m" + "Error: Resource " + args[0] + " does not exist.");
+                    LocalTelnetAdmin.SendResponse(stream, ConsoleColors.RED + "Error: Resource " + args[0] + " does not exist.");
                 }
             }
             else
             {
-                LocalTelnetAdmin.SendResponse(stream, "\u001B[0;31m" + "Error: No ResourceName sendet.");
+                LocalTelnetAdmin.SendResponse(stream, ConsoleColors.RED + "Error: No ResourceName sendet.");
             }
         }
 
@@ -76,18 +76,18 @@ namespace LocalTelnetAdmin.Commands
                 if (this.DoesResourceExist(args[0]))
                 {
                     API.stopResource(args[0]);
-                    LocalTelnetAdmin.SendResponse(stream, "\u001B[0;32m" + "Success: Resource " + args[0] + " stopped successfully.");
+                    LocalTelnetAdmin.SendResponse(stream, ConsoleColors.GREEN + "Success: Resource " + args[0] + " stopped successfully.");
                     API.startResource(args[0]);
-                    LocalTelnetAdmin.SendResponse(stream, "\u001B[0;32m" + "Success: Resource " + args[0] + " started successfully.");
+                    LocalTelnetAdmin.SendResponse(stream, ConsoleColors.GREEN + "Success: Resource " + args[0] + " started successfully.");
                 }
                 else
                 {
-                    LocalTelnetAdmin.SendResponse(stream, "\u001B[0;31m" + "Error: No ResourceName sendet.");
+                    LocalTelnetAdmin.SendResponse(stream, ConsoleColors.RED + "Error: No ResourceName sendet.");
                 }
             }
             else
             {
-                LocalTelnetAdmin.SendResponse(stream, "\u001B[0;31m" + "Error: No ResourceName sendet.");
+                LocalTelnetAdmin.SendResponse(stream, ConsoleColors.RED + "Error: No ResourceName sendet.");
             }
         }
 

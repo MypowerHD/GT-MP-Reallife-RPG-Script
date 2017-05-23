@@ -73,9 +73,9 @@ namespace LocalTelnetAdmin
                         {
                             // Translate data bytes to a ASCII string.
                             data = System.Text.Encoding.ASCII.GetString(bytes, 0, i);
-                            Console.WriteLine("Received: {0}", data);
-
                             data = data.Trim();
+                            Console.WriteLine("Received:{0}", data);
+
                             if (data.Length > 0)
                             {
                                 String[] args = data.Split(' ');
@@ -120,7 +120,7 @@ namespace LocalTelnetAdmin
 
         public static void SendResponse(NetworkStream stream, String response)
         {
-            byte[] msg = System.Text.Encoding.ASCII.GetBytes(response);
+            byte[] msg = System.Text.Encoding.ASCII.GetBytes(response + ConsoleColors.WHITE);
             stream.Write(msg, 0, msg.Length);
         }
 
