@@ -1,13 +1,19 @@
 ﻿using GrandTheftMultiplayer.Server.API;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using System.Net.Sockets;
+using GrandTheftMultiplayer.Shared;
+using LocalTelnetAdmin.Commands;
 
 namespace LocalTelnetAdmin
 {
     public class LocalTelnetAdmin : Script
     {
-        TcpListener server = null;
+        TcpListener _server = null;
+
+        static Dictionary<String, Command> registeredCommands = new Dictionary<String, Command>();
 
         public LocalTelnetAdmin()
         {
@@ -18,7 +24,7 @@ namespace LocalTelnetAdmin
         {
             try
             {
-                Int32 port = API.getResourceSetting<Int32>("LocalTelnetAdmin", "socketport");
+                Int32 port = API.getResourceSetting<Int32>(API.getThisResource(), "socketport");
 
                 if (port <= 1000)
                 {
@@ -27,10 +33,10 @@ namespace LocalTelnetAdmin
 
                 IPAddress localAddr = IPAddress.Parse("127.0.0.1");
 
-                server = new TcpListener(localAddr, port);
+                _server = new TcpListener(localAddr, port);
 
                 // Start listening for client requests.
-                server.Start();
+                _server.Start();
 
                 // Buffer for reading data
                 Byte[] bytes = new Byte[256];
@@ -43,7 +49,7 @@ namespace LocalTelnetAdmin
 
                     // Perform a blocking call to accept requests. 
                     // You could also user server.AcceptSocket() here.
-                    TcpClient client = server.AcceptTcpClient();
+                    TcpClient client = _server.AcceptTcpClient();
 
                     String clientIp = ((IPEndPoint) client.Client.RemoteEndPoint).Address.ToString();
                     Console.WriteLine("Recieved Adminconnection from " + clientIp);
@@ -69,17 +75,31 @@ namespace LocalTelnetAdmin
                             data = System.Text.Encoding.ASCII.GetString(bytes, 0, i);
                             Console.WriteLine("Received: {0}", data);
 
+                            data = data.Trim();
+                            if (data.Length > 0)
+                            {
+                                String[] args = data.Split(' ');
+                                args[0] = args[0].ToLower();
 
+                                if (args[0].Equals("help"))
+                                {
+                                    Help.SendHelp(stream);
+                                }
+                                else
+                                {
+                                    if (LocalTelnetAdmin.registeredCommands.ContainsKey(args[0]))
+                                    {
+                                        Command cmd = LocalTelnetAdmin.registeredCommands.Get(args[0]);
 
-
-                            // Process the data sent by the client.
-                            //                        data = data.ToUpper();
-
-                            //                        byte[] msg = System.Text.Encoding.ASCII.GetBytes(data);
-
-                            //                         Send back a response.
-                            //                        stream.Write(msg, 0, msg.Length);
-                            //                        Console.WriteLine("Sent: {0}", data);
+                                        args = args.Skip(1).ToArray();
+                                        API.call(cmd.ClassName, cmd.MethodName, stream, args);
+                                    }
+                                    else
+                                    {
+                                        LocalTelnetAdmin.SendResponse(stream, "Cmd " + args[0] + " does not exist!");
+                                    }
+                                }
+                            }
                         }
                     }
 
@@ -96,6 +116,17 @@ namespace LocalTelnetAdmin
                 // Stop listening for new clients.
                 server.Stop();
             }
+        }
+
+        public static void SendResponse(NetworkStream stream, String response)
+        {
+            byte[] msg = System.Text.Encoding.ASCII.GetBytes(response);
+            stream.Write(msg, 0, msg.Length);
+        }
+
+        public static void RegisterNewCommand(String cmd, Command cmdDefinition)
+        {
+            LocalTelnetAdmin.registeredCommands.Add(cmd, cmdDefinition);
         }
     }
 }
