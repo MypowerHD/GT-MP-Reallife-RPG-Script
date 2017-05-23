@@ -46,7 +46,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Commands\Command.cs" />
     <Compile Include="Commands\Help.cs" />
+    <Compile Include="Commands\ResourceCommands.cs" />
+    <Compile Include="ConsoleColors.cs" />
     <Compile Include="LocalTelnetAdmin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
