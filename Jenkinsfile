@@ -21,7 +21,7 @@ node {
 		}
 	}
 	
-	stage('deploy') {
+	stage('Deploy') {
 		if (env.BRANCH_NAME == 'master') {
 			sh 'ssh root@terratex.eu "rmdir \\"D:/TerraTex/Spiele/GTMP/01_server/live/resources\\" /s /q"'
 			sh 'ssh root@terratex.eu "mkdir \\"D:/TerraTex/Spiele/GTMP/01_server/live/resources/TerraTex-RL-RPG\\""'
@@ -30,7 +30,7 @@ node {
 			sh 'ssh root@terratex.eu "copy \\"D:/TerraTex/Spiele/GTMP/02_configs/live/*.*\\" \\"D:/TerraTex/Spiele/GTMP/01_server/live/resources/TerraTex-RL-RPG/Configs\\"'
 			sh 'ssh root@terratex.eu "xcopy \\"D:/TerraTex/Spiele/GTMP/03_shared_packages/*\\" \\"D:/TerraTex/Spiele/GTMP/01_server/live/resources\\" /E'
 			
-		} else if (env.BRANCH_NAME != 'develop') {
+		} else if (env.BRANCH_NAME == 'develop') {
 			sh 'ssh root@terratex.eu "rmdir \\"D:/TerraTex/Spiele/GTMP/01_server/dev/resources\\" /s /q"'
 			sh 'ssh root@terratex.eu "mkdir \\"D:/TerraTex/Spiele/GTMP/01_server/dev/resources/TerraTex-RL-RPG\\""'
 			sh 'scp -r ./resources/TerraTex-RL-RPG root@terratex.eu:"D:/TerraTex/Spiele/GTMP/01_server/dev/resources/TerraTex-RL-RPG"'
