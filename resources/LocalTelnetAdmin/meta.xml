@@ -7,6 +7,10 @@
 
   
     <script src="LocalTelnetAdmin.cs" type="server" lang="csharp" />
+  
+    <script src="Commands/Command.cs" type="server" lang="csharp" />
+    <script src="Commands/Help.cs" type="server" lang="csharp" />
+    <script src="Commands/ResourceCommands.cs" type="server" lang="csharp" />
 
     <settings>
       <setting name="socketport" value="9090" default="9090" description="Port for Local Telnet Socket. Minimum: 1000" />
