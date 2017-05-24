@@ -30,7 +30,7 @@ node('windows') {
 			bat 'nuget install resources/TerraTex-RL-RPG/packages.config -OutputDirectory resources/packages'
 			bat 'msbuild resources/TerraTex-RL-RPG/TerraTex-RL-RPG.csproj'
 			archiveArtifacts artifacts: '**/*.*'
-			stash includes '**/*.*', name: 'compiled'
+			stash includes:'**/*.*', name: 'compiled'
 		}
 	}
 }
