@@ -28,6 +28,7 @@ node('windows') {
 	stage('Build') {
 		if (env.BRANCH_NAME == 'master' || env.BRANCH_NAME == 'develop') {
 			bat 'dir'
+			archiveArtifacts artifacts: '**/*.*'
 		}
 	}
 }
