@@ -12,6 +12,6 @@
     <config src="Configs/database.xml" type="server" />
   
     <script src="TerraTex_RL_RPG.cs" type="server" lang="csharp" />
-    <script src="Lib/MySql.cs" type="server" lang="csharp" />
+    <script src="Lib/Data/Database/Database.cs" type="server" lang="csharp" />
   
 </meta>
