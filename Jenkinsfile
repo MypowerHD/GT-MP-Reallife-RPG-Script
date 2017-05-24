@@ -1,4 +1,5 @@
 node('master'){
+	deleteDir()
 	checkout scm
 	
 	stage('Sonar-Scanner') {			
@@ -23,6 +24,7 @@ node('master'){
 }
 
 node('windows') {	
+	deleteDir()
 	checkout scm
 	
 	stage('Build') {
