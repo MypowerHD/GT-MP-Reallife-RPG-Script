@@ -30,12 +30,14 @@ node('windows') {
 			bat 'nuget install resources/TerraTex-RL-RPG/packages.config -OutputDirectory resources/packages'
 			bat 'msbuild resources/TerraTex-RL-RPG/TerraTex-RL-RPG.csproj'
 			archiveArtifacts artifacts: '**/*.*'
+			stash includes '**/*.*', name: 'compiled'
 		}
 	}
 }
 
 node('master') {
 	stage('Deploy') {
+		unstash 'compiled'
 		if (env.BRANCH_NAME == 'master') {
 		
 			sh 'sed -i -- \'s/9090/9091/g\' resources/LocalTelnetAdmin/meta.xml'
