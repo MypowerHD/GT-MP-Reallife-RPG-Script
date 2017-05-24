@@ -22,12 +22,10 @@ node('master'){
 	}
 }
 
-node('windows') {
-	checkout scm
-	
+node('windows') {	
 	stage('Build') {
 		if (env.BRANCH_NAME == 'master' || env.BRANCH_NAME == 'develop') {
-			sh 'echo test'
+			sh 'dir'
 		}
 	}
 }
