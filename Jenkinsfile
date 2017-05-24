@@ -27,7 +27,7 @@ node('windows') {
 	
 	stage('Build') {
 		if (env.BRANCH_NAME == 'master' || env.BRANCH_NAME == 'develop') {
-			bat 'dir'
+			bat 'msbuild resources/TerraTex-RL-RPG/TerraTex-RL-RPG.csproj'
 			archiveArtifacts artifacts: '**/*.*'
 		}
 	}
