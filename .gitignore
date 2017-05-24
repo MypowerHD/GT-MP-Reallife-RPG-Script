@@ -288,3 +288,4 @@ __pycache__/
 *.xsd.cs
 
 **/node_modules
+resources/TerraTex-RL-RPG/types-gt-mp/
