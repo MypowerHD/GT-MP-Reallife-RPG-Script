@@ -27,6 +27,7 @@ node('windows') {
 	
 	stage('Build') {
 		if (env.BRANCH_NAME == 'master' || env.BRANCH_NAME == 'develop') {
+			bat 'nuget install resources/TerraTex-RL-RPG/packages.config -OutputDirectory resources/packages'
 			bat 'msbuild resources/TerraTex-RL-RPG/TerraTex-RL-RPG.csproj'
 			archiveArtifacts artifacts: '**/*.*'
 		}
