@@ -52,6 +52,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Lib\Data\Database\Database.cs" />
     <Compile Include="TerraTex_RL_RPG.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -60,6 +61,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Configs\database.xml" />
     <Content Include="Languages\de_client.xml" />
     <Content Include="Languages\de_server.xml" />
     <Content Include="meta.xml" />

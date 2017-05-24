@@ -6,12 +6,6 @@
          type="gamemode" />
 
 
-    <config src="Languages/de_client.xml" type="client" />
-    <config src="Languages/de_server.xml" type="server" />
-  
-    <config src="Configs/database.xml" type="server" />
-
-    <assembly ref="MySql.Data.dll" />
   
     <script src="TerraTex_RL_RPG.cs" type="server" lang="csharp" />
     <script src="Lib/Data/Database/Database.cs" type="server" lang="csharp" />

@@ -10,7 +10,6 @@ namespace TerraTex_RL_RPG.Lib.Data.Database
 
         public Database()
         {
-            XmlGroup config = API.loadConfig("database");
 
             
         }

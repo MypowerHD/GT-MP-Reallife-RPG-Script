@@ -1,4 +1,4 @@
-node('master'){
+node {
 	checkout scm
 	
 	stage('Sonar-Scanner') {			
@@ -20,19 +20,7 @@ node('master'){
 			}
 		}
 	}
-}
-
-node('windows') {
-	checkout scm
 	
-	stage('Build') {
-		if (env.BRANCH_NAME == 'master' || env.BRANCH_NAME == 'develop') {
-			sh 'echo test'
-		}
-	}
-}
-
-node('master') {
 	stage('Deploy') {
 		if (env.BRANCH_NAME == 'master') {
 		
@@ -56,5 +44,4 @@ node('master') {
 			sh 'ssh root@terratex.eu "xcopy \\"D:/TerraTex/Spiele/GTMP/03_shared_packages\\" \\"D:/TerraTex/Spiele/GTMP/01_server/dev/resources\\" /E /Y /I"'
 		}
 	}
-
 }
