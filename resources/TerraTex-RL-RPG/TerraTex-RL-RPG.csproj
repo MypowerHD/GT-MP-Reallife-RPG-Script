@@ -29,6 +29,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <RunPostBuildEvent>OnOutputUpdated</RunPostBuildEvent>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="GrandTheftMultiplayer.Server, Version=0.1.508.703, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\grandtheftmultiplayer.api.0.1.508.703\lib\net452\GrandTheftMultiplayer.Server.exe</HintPath>
@@ -52,7 +55,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Lib\Data\Database\Database.cs" />
+    <Compile Include="Lib\Data\Configs.cs" />
+    <Compile Include="Lib\Data\Database.cs" />
     <Compile Include="TerraTex_RL_RPG.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -62,6 +66,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Configs\database.xml" />
+    <Content Include="Configs\database_example.xml" />
     <Content Include="Languages\de_client.xml" />
     <Content Include="Languages\de_server.xml" />
     <Content Include="meta.xml" />
@@ -96,4 +101,11 @@
     <TypeScriptCompile Include="types-gt-mp\System.Windows.Forms.d.ts" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PostBuildEvent>xcopy /I /E /Y "$(ProjectDir)." "C:\Users\gamer\Downloads\GT-MP-Server 0.1.508.640 HF1\resources/TerraTex-RL-RPG" /s</PostBuildEvent>
+  </PropertyGroup>
 </Project>

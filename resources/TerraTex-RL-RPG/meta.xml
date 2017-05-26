@@ -7,7 +7,6 @@
 
 
   
-    <script src="TerraTex_RL_RPG.cs" type="server" lang="csharp" />
-    <script src="Lib/Data/Database/Database.cs" type="server" lang="csharp" />
+    <script src="bin/Debug/TerraTex-RL-RPG.dll" type="server" lang="compiled" />
   
 </meta>
