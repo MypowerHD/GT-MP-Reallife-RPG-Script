@@ -30,7 +30,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <RunPostBuildEvent>OnOutputUpdated</RunPostBuildEvent>
+    <RunPostBuildEvent>Always</RunPostBuildEvent>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="GrandTheftMultiplayer.Server, Version=0.1.508.703, Culture=neutral, processorArchitecture=MSIL">
@@ -57,6 +57,7 @@
   <ItemGroup>
     <Compile Include="Lib\Data\Configs.cs" />
     <Compile Include="Lib\Data\Database.cs" />
+    <Compile Include="Lib\User\StartUp\PlayerConnection.cs" />
     <Compile Include="TerraTex_RL_RPG.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -69,7 +70,10 @@
     <Content Include="Configs\database_example.xml" />
     <Content Include="Languages\de_client.xml" />
     <Content Include="Languages\de_server.xml" />
-    <Content Include="meta.xml" />
+    <Content Include="Lib\User\StartUp\PlayerConnection_Client.js" />
+    <Content Include="meta.xml">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="types-gt-mp\Declarations.d.ts" />
@@ -100,12 +104,15 @@
     <TypeScriptCompile Include="types-gt-mp\System.Drawing.d.ts" />
     <TypeScriptCompile Include="types-gt-mp\System.Windows.Forms.d.ts" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Lib\Helper\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PreBuildEvent>
     </PreBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
-    <PostBuildEvent>xcopy /I /E /Y "$(ProjectDir)." "C:\Users\gamer\Downloads\GT-MP-Server 0.1.508.640 HF1\resources/TerraTex-RL-RPG" /s</PostBuildEvent>
+    <PostBuildEvent>rmdir  /S /Q "C:\Users\gamer\Desktop\GT-MP-Server 0.1.508.640 HF1\resources/TerraTex-RL-RPG" &amp;&amp; xcopy /S /I /Y /E "$(ProjectDir)." "C:\Users\gamer\Desktop\GT-MP-Server 0.1.508.640 HF1\resources/TerraTex-RL-RPG"</PostBuildEvent>
   </PropertyGroup>
 </Project>

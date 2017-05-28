@@ -38,5 +38,10 @@ namespace TerraTex_RL_RPG.Lib.Data
         {
             return _xmlConfigs;
         }
+
+        public Boolean ConfigExists(string configName)
+        {
+            return _xmlConfigs.ContainsKey(configName);
+        }
     }
 }
