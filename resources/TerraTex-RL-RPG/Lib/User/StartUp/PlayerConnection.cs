@@ -1,6 +1,8 @@
-﻿using GrandTheftMultiplayer.Server.API;
+﻿using System;
+using GrandTheftMultiplayer.Server.API;
 using GrandTheftMultiplayer.Server.Elements;
 using GrandTheftMultiplayer.Shared.Math;
+using MySql.Data.MySqlClient;
 
 namespace TerraTex_RL_RPG.Lib.User.StartUp
 {
@@ -9,10 +11,10 @@ namespace TerraTex_RL_RPG.Lib.User.StartUp
         public PlayerConnection()
         {
             API.onClientEventTrigger += OnClientEvent;
-            API.onPlayerConnected += onPlayerConnectedEventHandler;
+            API.onPlayerConnected += OnPlayerConnectedEventHandler;
         }
 
-        public void onPlayerConnectedEventHandler(Client player)
+        public void OnPlayerConnectedEventHandler(Client player)
         {
             player.nametagVisible = false;
             player.invincible = true;
@@ -21,12 +23,26 @@ namespace TerraTex_RL_RPG.Lib.User.StartUp
             player.freeze(true);
             player.collisionless = true;
         }
-
+        
         public void OnClientEvent(Client player, string eventName, params object[] arguments)
         {
             if (eventName.Equals("onClientResourceStarted"))
             {
-                
+                MySqlCommand doesPlayerExistInDb = TTRPG.Mysql.Conn.CreateCommand();
+
+                doesPlayerExistInDb.CommandText = "SELECT count(ID) FROM user WHERE Nickname = @nickname";
+                doesPlayerExistInDb.Parameters.AddWithValue("@nickname", player.name);
+
+                Int32 accounts = Int32.Parse(doesPlayerExistInDb.ExecuteScalar().ToString());
+
+                if (accounts == 1)
+                {
+                    player.triggerEvent("startLogin");
+                }
+                else
+                {
+                    player.triggerEvent("startRegister");
+                }
             }
         }
     }

@@ -15,10 +15,10 @@ namespace TerraTex_RL_RPG
         public TTRPG()
         {
             TTRPG.Api = API;
-            API.onResourceStart += ttStartUp;
+            API.onResourceStart += TTStartUp;
         }
 
-        public void ttStartUp()
+        public void TTStartUp()
         {
             TTRPG.Configs = new Configs();
             TTRPG.Mysql = new Database();

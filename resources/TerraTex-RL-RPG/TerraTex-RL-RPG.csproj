@@ -20,6 +20,8 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>
+    </CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -28,6 +30,8 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>
+    </CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup>
     <RunPostBuildEvent>Always</RunPostBuildEvent>
@@ -66,14 +70,18 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Configs\database.xml" />
+    <Content Include="Configs\database.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Configs\database_example.xml" />
     <Content Include="Languages\de_client.xml" />
     <Content Include="Languages\de_server.xml" />
     <Content Include="Lib\User\StartUp\PlayerConnection_Client.js" />
+    <Content Include="Lib\User\StartUp\PlayerConnection_Register_Client.js" />
     <Content Include="meta.xml">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Sqls\Install.sql" />
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="types-gt-mp\Declarations.d.ts" />
@@ -113,6 +121,7 @@
     </PreBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
-    <PostBuildEvent>rmdir  /S /Q "C:\Users\gamer\Desktop\GT-MP-Server 0.1.508.640 HF1\resources/TerraTex-RL-RPG" &amp;&amp; xcopy /S /I /Y /E "$(ProjectDir)." "C:\Users\gamer\Desktop\GT-MP-Server 0.1.508.640 HF1\resources/TerraTex-RL-RPG"</PostBuildEvent>
+    <PostBuildEvent>rmdir  /S /Q "C:\Users\gamer\Desktop\GT-MP-Server 0.1.508.640 HF1\resources/TerraTex-RL-RPG"
+xcopy /S /I /Y /E "$(ProjectDir)." "C:\Users\gamer\Desktop\GT-MP-Server 0.1.508.640 HF1\resources/TerraTex-RL-RPG"</PostBuildEvent>
   </PropertyGroup>
 </Project>

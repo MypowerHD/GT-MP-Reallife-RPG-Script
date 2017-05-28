@@ -9,5 +9,6 @@
   
     <script src="bin/Debug/TerraTex-RL-RPG.dll" type="server" lang="compiled" />
     <script src="Lib/User/StartUp/PlayerConnection_Client.js" type="client" lang="javascript" />
+    <script src="Lib/User/StartUp/PlayerConnection_Register_Client.js" type="client" lang="javascript" />
   
 </meta>
