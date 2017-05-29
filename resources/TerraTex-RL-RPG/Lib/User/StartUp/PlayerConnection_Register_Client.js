@@ -1,6 +1,6 @@
 ﻿let browser;
 
-API.onServerEventTrigger.connect(function(eventName) {
+API.onServerEventTrigger.connect(function (eventName, args) {
     if (eventName === "startRegister") {
         const resolution = API.getScreenResolution();
 
@@ -14,5 +14,9 @@ API.onServerEventTrigger.connect(function(eventName) {
         API.setCefBrowserHeadless(browser, false);
         API.loadPageCefBrowser(browser, 'UI/Register_Login_Profile/Register.html', false);
         API.showCursor(true);
+        API.waitUntilCefBrowserLoaded(browser);
+        
+        // browser.call("setPlayerNickname", args[0]);
+        browser.eval("setPlayerNickname(\"" + args[0] + "\");");
     }
 });

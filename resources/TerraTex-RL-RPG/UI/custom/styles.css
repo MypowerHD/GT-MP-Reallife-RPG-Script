@@ -2,12 +2,13 @@ textarea {
   height: 150px; }
 
 .form-control {
-  margin-bottom: 20px; }
+  margin-bottom: 15px; }
 
 .register_image_logo {
   text-align: right;
-  height: 150px;
-  float: left; }
+  height: 100px;
+  float: left;
+  margin-right: 10px; }
 
 .clear {
   clear: both; }

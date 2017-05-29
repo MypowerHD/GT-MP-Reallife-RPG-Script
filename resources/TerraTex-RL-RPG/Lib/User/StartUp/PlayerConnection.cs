@@ -41,7 +41,7 @@ namespace TerraTex_RL_RPG.Lib.User.StartUp
                 }
                 else
                 {
-                    player.triggerEvent("startRegister");
+                    player.triggerEvent("startRegister", player.name);
                 }
             }
         }

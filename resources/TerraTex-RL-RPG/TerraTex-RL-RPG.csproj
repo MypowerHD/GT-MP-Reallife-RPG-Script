@@ -188,6 +188,7 @@
     <Content Include="UI\custom\styles.css" />
     <Content Include="UI\general\Scripts\bootstrap.js" />
     <Content Include="UI\general\Scripts\bootstrap.min.js" />
+    <Content Include="UI\general\Scripts\fingerprint2.min.js" />
     <Content Include="UI\general\Scripts\jquery-3.1.1.intellisense.js" />
     <Content Include="UI\general\Scripts\jquery-3.1.1.js" />
     <Content Include="UI\general\Scripts\jquery-3.1.1.min.js" />
@@ -195,7 +196,11 @@
     <Content Include="UI\general\Scripts\jquery-3.1.1.slim.min.js" />
     <Content Include="Sqls\Install.sql" />
     <Content Include="UI\general\Styles\bootstrap\bootstrap.css" />
+    <Content Include="UI\Register_Login_Profile\GetFingerprint.html" />
     <Content Include="UI\Register_Login_Profile\Register.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Lib\Helper\" />
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="types-gt-mp\Declarations.d.ts" />
@@ -225,9 +230,6 @@
     <TypeScriptCompile Include="types-gt-mp\System.d.ts" />
     <TypeScriptCompile Include="types-gt-mp\System.Drawing.d.ts" />
     <TypeScriptCompile Include="types-gt-mp\System.Windows.Forms.d.ts" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Lib\Helper\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

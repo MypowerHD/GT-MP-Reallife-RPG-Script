@@ -1,0 +1,20 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <script src="../general/Scripts/fingerprint2.min.js"></script>
+</head>
+<body>
+<script>
+    setTimeout(() => {
+            new Fingerprint2().get((result, components) => {
+                console.log(result); //a hash, representing your device fingerprint
+                console.log(components); // an array of FP components
+                resourceCall("setFingerPrint", result, components);
+            });
+        },
+        1000);
+</script>
+</body>
+</html>
