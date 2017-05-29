@@ -37,11 +37,11 @@
     <RunPostBuildEvent>Always</RunPostBuildEvent>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="GrandTheftMultiplayer.Server, Version=0.1.508.703, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\grandtheftmultiplayer.api.0.1.508.703\lib\net452\GrandTheftMultiplayer.Server.exe</HintPath>
+    <Reference Include="GrandTheftMultiplayer.Server, Version=0.1.513.481, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\grandtheftmultiplayer.api.0.1.513.481\lib\net452\GrandTheftMultiplayer.Server.exe</HintPath>
     </Reference>
     <Reference Include="GrandTheftMultiplayer.Shared, Version=0.1.489.410, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\grandtheftmultiplayer.api.0.1.508.703\lib\net452\GrandTheftMultiplayer.Shared.dll</HintPath>
+      <HintPath>..\packages\grandtheftmultiplayer.api.0.1.513.481\lib\net452\GrandTheftMultiplayer.Shared.dll</HintPath>
     </Reference>
     <Reference Include="MySql.Data, Version=6.9.9.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
       <HintPath>..\packages\MySql.Data.6.9.9\lib\net45\MySql.Data.dll</HintPath>
@@ -67,7 +67,91 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <None Include="UI\general\Styles\bootstrap\bootstrap-grid.scss" />
+    <None Include="UI\general\Styles\bootstrap\bootstrap-reboot.scss" />
+    <None Include="UI\general\Styles\bootstrap\bootstrap.scss" />
+    <None Include="UI\general\Styles\bootstrap\mixins\_alert.scss" />
+    <None Include="UI\general\Styles\bootstrap\mixins\_background-variant.scss" />
+    <None Include="UI\general\Styles\bootstrap\mixins\_badge.scss" />
+    <None Include="UI\general\Styles\bootstrap\mixins\_border-radius.scss" />
+    <None Include="UI\general\Styles\bootstrap\mixins\_breakpoints.scss" />
+    <None Include="UI\general\Styles\bootstrap\mixins\_buttons.scss" />
+    <None Include="UI\general\Styles\bootstrap\mixins\_cards.scss" />
+    <None Include="UI\general\Styles\bootstrap\mixins\_clearfix.scss" />
+    <None Include="UI\general\Styles\bootstrap\mixins\_float.scss" />
+    <None Include="UI\general\Styles\bootstrap\mixins\_forms.scss" />
+    <None Include="UI\general\Styles\bootstrap\mixins\_gradients.scss" />
+    <None Include="UI\general\Styles\bootstrap\mixins\_grid-framework.scss" />
+    <None Include="UI\general\Styles\bootstrap\mixins\_grid.scss" />
+    <None Include="UI\general\Styles\bootstrap\mixins\_hover.scss" />
+    <None Include="UI\general\Styles\bootstrap\mixins\_image.scss" />
+    <None Include="UI\general\Styles\bootstrap\mixins\_list-group.scss" />
+    <None Include="UI\general\Styles\bootstrap\mixins\_lists.scss" />
+    <None Include="UI\general\Styles\bootstrap\mixins\_nav-divider.scss" />
+    <None Include="UI\general\Styles\bootstrap\mixins\_navbar-align.scss" />
+    <None Include="UI\general\Styles\bootstrap\mixins\_pagination.scss" />
+    <None Include="UI\general\Styles\bootstrap\mixins\_reset-text.scss" />
+    <None Include="UI\general\Styles\bootstrap\mixins\_resize.scss" />
+    <None Include="UI\general\Styles\bootstrap\mixins\_screen-reader.scss" />
+    <None Include="UI\general\Styles\bootstrap\mixins\_size.scss" />
+    <None Include="UI\general\Styles\bootstrap\mixins\_table-row.scss" />
+    <None Include="UI\general\Styles\bootstrap\mixins\_text-emphasis.scss" />
+    <None Include="UI\general\Styles\bootstrap\mixins\_text-hide.scss" />
+    <None Include="UI\general\Styles\bootstrap\mixins\_text-truncate.scss" />
+    <None Include="UI\general\Styles\bootstrap\mixins\_transforms.scss" />
+    <None Include="UI\general\Styles\bootstrap\mixins\_visibility.scss" />
+    <None Include="UI\general\Styles\bootstrap\utilities\_align.scss" />
+    <None Include="UI\general\Styles\bootstrap\utilities\_background.scss" />
+    <None Include="UI\general\Styles\bootstrap\utilities\_borders.scss" />
+    <None Include="UI\general\Styles\bootstrap\utilities\_clearfix.scss" />
+    <None Include="UI\general\Styles\bootstrap\utilities\_display.scss" />
+    <None Include="UI\general\Styles\bootstrap\utilities\_flex.scss" />
+    <None Include="UI\general\Styles\bootstrap\utilities\_float.scss" />
+    <None Include="UI\general\Styles\bootstrap\utilities\_position.scss" />
+    <None Include="UI\general\Styles\bootstrap\utilities\_screenreaders.scss" />
+    <None Include="UI\general\Styles\bootstrap\utilities\_sizing.scss" />
+    <None Include="UI\general\Styles\bootstrap\utilities\_spacing.scss" />
+    <None Include="UI\general\Styles\bootstrap\utilities\_text.scss" />
+    <None Include="UI\general\Styles\bootstrap\utilities\_visibility.scss" />
+    <None Include="UI\general\Styles\bootstrap\_alert.scss" />
+    <None Include="UI\general\Styles\bootstrap\_badge.scss" />
+    <None Include="UI\general\Styles\bootstrap\_breadcrumb.scss" />
+    <None Include="UI\general\Styles\bootstrap\_button-group.scss" />
+    <None Include="UI\general\Styles\bootstrap\_buttons.scss" />
+    <None Include="UI\general\Styles\bootstrap\_card.scss" />
+    <None Include="UI\general\Styles\bootstrap\_carousel.scss" />
+    <None Include="UI\general\Styles\bootstrap\_close.scss" />
+    <None Include="UI\general\Styles\bootstrap\_code.scss" />
+    <None Include="UI\general\Styles\bootstrap\_custom-forms.scss" />
+    <None Include="UI\general\Styles\bootstrap\_custom.scss" />
+    <None Include="UI\general\Styles\bootstrap\_dropdown.scss" />
+    <None Include="UI\general\Styles\bootstrap\_forms.scss" />
+    <None Include="UI\general\Styles\bootstrap\_grid.scss" />
+    <None Include="UI\general\Styles\bootstrap\_images.scss" />
+    <None Include="UI\general\Styles\bootstrap\_input-group.scss" />
+    <None Include="UI\general\Styles\bootstrap\_jumbotron.scss" />
+    <None Include="UI\general\Styles\bootstrap\_list-group.scss" />
+    <None Include="UI\general\Styles\bootstrap\_media.scss" />
+    <None Include="UI\general\Styles\bootstrap\_mixins.scss" />
+    <None Include="UI\general\Styles\bootstrap\_modal.scss" />
+    <None Include="UI\general\Styles\bootstrap\_nav.scss" />
+    <None Include="UI\general\Styles\bootstrap\_navbar.scss" />
+    <None Include="UI\general\Styles\bootstrap\_normalize.scss" />
+    <None Include="UI\general\Styles\bootstrap\_pagination.scss" />
+    <None Include="UI\general\Styles\bootstrap\_popover.scss" />
+    <None Include="UI\general\Styles\bootstrap\_print.scss" />
+    <None Include="UI\general\Styles\bootstrap\_progress.scss" />
+    <None Include="UI\general\Styles\bootstrap\_reboot.scss" />
+    <None Include="UI\general\Styles\bootstrap\_responsive-embed.scss" />
+    <None Include="UI\general\Styles\bootstrap\_tables.scss" />
+    <None Include="UI\general\Styles\bootstrap\_tooltip.scss" />
+    <None Include="UI\general\Styles\bootstrap\_transitions.scss" />
+    <None Include="UI\general\Styles\bootstrap\_type.scss" />
+    <None Include="UI\general\Styles\bootstrap\_utilities.scss" />
+    <None Include="UI\general\Styles\bootstrap\_variables.scss" />
     <None Include="packages.config" />
+    <None Include="UI\general\Scripts\jquery-3.1.1.min.map" />
+    <None Include="UI\general\Scripts\jquery-3.1.1.slim.min.map" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Configs\database.xml">
@@ -81,6 +165,13 @@
     <Content Include="meta.xml">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="UI\general\Scripts\bootstrap.js" />
+    <Content Include="UI\general\Scripts\bootstrap.min.js" />
+    <Content Include="UI\general\Scripts\jquery-3.1.1.intellisense.js" />
+    <Content Include="UI\general\Scripts\jquery-3.1.1.js" />
+    <Content Include="UI\general\Scripts\jquery-3.1.1.min.js" />
+    <Content Include="UI\general\Scripts\jquery-3.1.1.slim.js" />
+    <Content Include="UI\general\Scripts\jquery-3.1.1.slim.min.js" />
     <Content Include="Sqls\Install.sql" />
   </ItemGroup>
   <ItemGroup>
