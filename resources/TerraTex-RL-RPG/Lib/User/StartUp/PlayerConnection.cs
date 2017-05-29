@@ -34,6 +34,8 @@ namespace TerraTex_RL_RPG.Lib.User.StartUp
                 doesPlayerExistInDb.Parameters.AddWithValue("@nickname", player.name);
 
                 Int32 accounts = Int32.Parse(doesPlayerExistInDb.ExecuteScalar().ToString());
+                
+                player.setSyncedData("fingerprint", arguments[0]);
 
                 if (accounts == 1)
                 {

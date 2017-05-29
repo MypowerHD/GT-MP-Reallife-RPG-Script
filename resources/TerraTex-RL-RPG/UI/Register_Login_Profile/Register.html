@@ -75,10 +75,13 @@
     </form>
     
     <script>
+        
+        $(document).ready(function () {
+            resourceCall("sendMeNickname");
+        });
+
         function setPlayerNickname(nickname) {
-            $(document).ready(function () {
-                $("span[data-insert=nickname]").html(nickname);
-            });
+            $("span[data-insert=nickname]").html(nickname);
         }
     </script>
 </div>

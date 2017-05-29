@@ -179,6 +179,7 @@
     <Content Include="Gruntfile.js" />
     <Content Include="Languages\de_client.xml" />
     <Content Include="Languages\de_server.xml" />
+    <Content Include="Lib\Helper\Timer.js" />
     <Content Include="Lib\User\StartUp\PlayerConnection_Client.js" />
     <Content Include="Lib\User\StartUp\PlayerConnection_Register_Client.js" />
     <Content Include="meta.xml">
@@ -199,9 +200,7 @@
     <Content Include="UI\Register_Login_Profile\GetFingerprint.html" />
     <Content Include="UI\Register_Login_Profile\Register.html" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Lib\Helper\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <TypeScriptCompile Include="types-gt-mp\Declarations.d.ts" />
     <TypeScriptCompile Include="types-gt-mp\GrandTheftMultiplayer.Client.GUI.d.ts" />
