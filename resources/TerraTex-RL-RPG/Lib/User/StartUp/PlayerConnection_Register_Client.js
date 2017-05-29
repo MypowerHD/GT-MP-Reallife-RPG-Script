@@ -1,9 +1,9 @@
 ﻿let browser;
 
-API.onServerEventTrigger.connect(function (eventName) {
+API.onServerEventTrigger.connect(function(eventName) {
     if (eventName === "startRegister") {
         const resolution = API.getScreenResolution();
-        
+
         browser = API.createCefBrowser(Math.round(resolution.Width) * 0.7, Math.round(resolution.Height * 0.7), true);
         API.waitUntilCefBrowserInit(browser);
 
