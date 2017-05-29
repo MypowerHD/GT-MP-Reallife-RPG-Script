@@ -7,6 +7,7 @@
     Password VARCHAR(1025),
     Gender ENUM('male', 'female'),
     Birthday DATE,
+	History TEXT,
     Created_at TIMESTAMP DEFAULT current_timestamp(),
     Last_Login TIMESTAMP
 );
