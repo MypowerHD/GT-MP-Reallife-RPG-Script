@@ -11,4 +11,11 @@
     <script src="Lib/User/StartUp/PlayerConnection_Client.js" type="client" lang="javascript" />
     <script src="Lib/User/StartUp/PlayerConnection_Register_Client.js" type="client" lang="javascript" />
   
+    <!-- UI Stuff-->
+      <file src="UI/custom/styles.css" />
+      <file src="UI/general/Scripts/bootstrap.min.js" />
+      <file src="UI/general/Scripts/jquery-3.1.1.min.js" />
+      <file src="UI/general/Styles/bootstrap/bootstrap.css" />
+      <file src="UI/Register_Login_Profile/Register.html" />
+  
 </meta>

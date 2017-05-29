@@ -4,7 +4,8 @@
         sass: {
             dist: {
                 files: {
-                    'UI/general/Styles/bootstrap/bootstrap.css': 'UI/general/Styles/bootstrap/bootstrap.scss'
+                    'UI/general/Styles/bootstrap/bootstrap.css': 'UI/general/Styles/bootstrap/bootstrap.scss',
+                    'UI/custom/styles.css': 'UI/custom/styles.scss'
                 }
             }
         }

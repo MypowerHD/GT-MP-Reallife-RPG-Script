@@ -84,6 +84,7 @@
   <ItemGroup>
     <None Include="app.config" />
     <None Include="package.json" />
+    <None Include="UI\custom\styles.scss" />
     <None Include="UI\general\Styles\bootstrap\bootstrap-grid.scss" />
     <None Include="UI\general\Styles\bootstrap\bootstrap-reboot.scss" />
     <None Include="UI\general\Styles\bootstrap\bootstrap.scss" />
@@ -183,6 +184,7 @@
     <Content Include="meta.xml">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="UI\custom\styles.css" />
     <Content Include="UI\general\Scripts\bootstrap.js" />
     <Content Include="UI\general\Scripts\bootstrap.min.js" />
     <Content Include="UI\general\Scripts\jquery-3.1.1.intellisense.js" />

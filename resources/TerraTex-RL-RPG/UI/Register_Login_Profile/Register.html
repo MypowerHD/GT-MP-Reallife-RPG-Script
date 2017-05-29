@@ -1,21 +1,32 @@
 ﻿<!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <meta charset="utf-8" />
+    <meta charset="utf-8"/>
     <title>Registration</title>
     <script src="../general/Scripts/jquery-3.1.1.min.js"></script>
     <script src="../general/Scripts/bootstrap.min.js"></script>
     <link rel="stylesheet" href="../general/Styles/bootstrap/bootstrap.css"/>
+    <link rel="stylesheet" href="../custom/styles.css"/>
 </head>
 <body>
-<div class="container">
+<div class="container-fluid">
     <form role="form">
-
         <div class="form-control">
-            <legend>Account Daten</legend>
+            <h3>Willkommen auf dem TerraTex Reallife Roleplay Game Server</h3>
+            Willkommen auf dem Server. Unter deinem Pseudonym ${nickname} wurde noch kein Account gefunden. Mit diesem Formular kannst du ein neuen Account und einen neuen
+            Character erstellen. Da wir im wesentlichen ein RPG Server sind, solltest du dir einen Character ausdenken, den es im realen wirklich geben könnte und mit
+            dem du dich indentifizieren kannst. Im Abschnitt "Character Daten" werden auch nur Daten zum Character abgefragt. Diese müssen nicht mit deinen realen Daten übereinstimmen.
+        </div>
+        <div class="form-control">
+            <h3>Account Daten</h3>
             <div class="form-group">
                 <label for="email">E-Mail</label>
                 <input type="email" class="form-control" id="email" placeholder="E-Mail">
+                <br/><small>
+                    Bitte gebe hier eine real existierende E-Mail Adresse ein. Unter dieser solltest du auch in Zukunft erreichbar sein. Sie wird zur Identifikation
+                    bei Moderativen Hilfen genutzt und du wirst sie ggf. auch in Zukunft benötigen, solltest du beispielsweise mal dein Passwort vergessen. Wir werden die E-Mail
+                    nicht für andere Zwecke (wie Werbung) nutzen. Sie wird nur zu deinen Gunsten gespeichert.
+                </small>
             </div>
             <div class="form-group">
                 <label for="password">Passwort</label>
@@ -24,7 +35,7 @@
             </div>
         </div>
         <div class="form-control">
-            <legend>(Roleplay-) Character Daten</legend>
+            <h3>(Roleplay-) Character Daten</h3>
             <div class="form-group">
                 <label for="forename">Vorname</label>
                 <input type="text" class="form-control" id="forename" placeholder="Vorname">
@@ -48,17 +59,19 @@
                 <label for="history">Charactergeschichte (optional)</label><br/>
                 <small>
                     Hier kannst du für einen Character eine coole kleine Geschichte ausdenken, z.B. wo kommt dein Character her, was macht ihn aus, welche Charactereigenschaften
-                    hat er, was willst du mit ihm erreichen oder ähnliches. Du solltest diese Geschichte auch aus sicht des Characters (Ich - Perspektive) schreiben oder Alternativ 
-                    in 3rd Person. Beispiel: "Max Mustermann hatte alles verloren und so blieb ihn nichts. In diesen Moment entschloss er sich aus dem Land zu fliehen und 
+                    hat er, was willst du mit ihm erreichen oder ähnliches. Du solltest diese Geschichte auch aus sicht des Characters (Ich - Perspektive) schreiben oder Alternativ
+                    in 3rd Person. Beispiel: "Max Mustermann hatte alles verloren und so blieb ihn nichts. In diesen Moment entschloss er sich aus dem Land zu fliehen und
                     floh nach TerraTex. Dort...."
                 </small>
-                <textarea class="form-control" id="history" placeholder="Charactergeschichte"></textarea>
+                <br/>
+                <br/>
+                <textarea class="form-control" id="history" height="150px" placeholder="Charactergeschichte"></textarea>
             </div>
         </div>
         <div class="form-control">
             <button type="submit" class="btn btn-primary">Account & Character erstellen</button>
         </div>
-</form>  
+    </form>
 </div>
 </body>
 </html>
