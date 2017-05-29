@@ -13,6 +13,7 @@
   
     <!-- UI Stuff-->
       <file src="UI/custom/styles.css" />
+      <file src="UI/custom/Images/logo.png" />
       <file src="UI/general/Scripts/bootstrap.min.js" />
       <file src="UI/general/Scripts/jquery-3.1.1.min.js" />
       <file src="UI/general/Styles/bootstrap/bootstrap.css" />

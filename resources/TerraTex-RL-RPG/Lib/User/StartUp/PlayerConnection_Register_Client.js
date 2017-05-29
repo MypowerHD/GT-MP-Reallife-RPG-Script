@@ -14,7 +14,5 @@ API.onServerEventTrigger.connect(function(eventName) {
         API.setCefBrowserHeadless(browser, false);
         API.loadPageCefBrowser(browser, 'UI/Register_Login_Profile/Register.html', false);
         API.showCursor(true);
-
-        API.sendNotification("Browser should be loaded on: " + x + " " + y);
     }
 });

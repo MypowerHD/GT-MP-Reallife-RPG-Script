@@ -1,2 +1,13 @@
 textarea {
   height: 150px; }
+
+.form-control {
+  margin-bottom: 20px; }
+
+.register_image_logo {
+  text-align: right;
+  height: 150px;
+  float: left; }
+
+.clear {
+  clear: both; }

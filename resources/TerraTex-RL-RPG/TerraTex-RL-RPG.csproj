@@ -184,6 +184,7 @@
     <Content Include="meta.xml">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="UI\custom\Images\logo.png" />
     <Content Include="UI\custom\styles.css" />
     <Content Include="UI\general\Scripts\bootstrap.js" />
     <Content Include="UI\general\Scripts\bootstrap.min.js" />
