@@ -4,9 +4,12 @@
 <head>
     <meta charset="utf-8" />
     <script src="../general/Scripts/fingerprint2.min.js"></script>
+    <script src="../general/Scripts/jquery-3.1.1.min.js"></script>
 </head>
 <body>
 <script>
+    $(document).ready(function() {
+
     setTimeout(() => {
             new Fingerprint2().get((result, components) => {
                 console.log(result); //a hash, representing your device fingerprint
@@ -14,7 +17,8 @@
                 resourceCall("setFingerPrint", result, components);
             });
         },
-        1000);
+            5000);
+    });
 </script>
 </body>
 </html>
