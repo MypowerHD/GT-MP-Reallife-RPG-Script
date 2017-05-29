@@ -11,7 +11,7 @@ API.onServerEventTrigger.connect(function (eventName) {
         const y = (resolution.Height * 0.3) / 2;
 
         API.setCefBrowserPosition(browser, x, y);
-        //API.setCefBrowserHeadless(browser, true);
+        API.setCefBrowserHeadless(browser, false);
         API.loadPageCefBrowser(browser, 'UI/Register_Login_Profile/Register.html', false);
         API.showCursor(true);
 
