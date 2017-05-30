@@ -22,7 +22,7 @@ API.onServerEventTrigger.connect(function(eventName, args) {
     }
 });
 
-function login_sendMeNickname() {
+function sendMeNickname() {
     browser.call("setPlayerNickname", nickname);
 }
 
