@@ -10,8 +10,6 @@
 <script>
     $(document).ready(function() {        
         new Fingerprint2().get((result, components) => {
-            console.log(result); //a hash, representing your device fingerprint
-            console.log(components); // an array of FP components
             resourceCall("setFingerPrint", result);
         });
     });

@@ -77,6 +77,7 @@
   <ItemGroup>
     <Compile Include="Lib\Data\Configs.cs" />
     <Compile Include="Lib\Data\Database.cs" />
+    <Compile Include="Lib\User\StartUp\PlayerRegister.cs" />
     <Compile Include="Lib\User\StartUp\PlayerConnection.cs" />
     <Compile Include="TerraTex_RL_RPG.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

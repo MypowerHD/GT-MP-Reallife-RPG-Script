@@ -23,3 +23,7 @@ API.onServerEventTrigger.connect(function(eventName, args) {
 function sendMeNickname() {
     browser.call("setPlayerNickname", nickname);
 }
+
+function sendRegistration(regData) {
+    API.triggerServerEvent("onClientStartRegister", regData);
+}
