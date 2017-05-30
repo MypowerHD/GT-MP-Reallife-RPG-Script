@@ -5,6 +5,7 @@ function setFingerPrint(result) {
 }
 
 API.onResourceStart.connect(function () {
+    API.setCanOpenChat(false);
     browser = API.createCefBrowser(1,1, true);
     API.waitUntilCefBrowserInit(browser);
     API.setCefBrowserHeadless(browser, true);

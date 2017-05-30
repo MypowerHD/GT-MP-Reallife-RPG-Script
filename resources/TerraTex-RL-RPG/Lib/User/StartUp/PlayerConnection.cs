@@ -39,7 +39,7 @@ namespace TerraTex_RL_RPG.Lib.User.StartUp
 
                 if (accounts == 1)
                 {
-                    player.triggerEvent("startLogin");
+                    player.triggerEvent("startLogin", player.name);
                 }
                 else
                 {

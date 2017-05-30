@@ -25,5 +25,6 @@ function sendMeNickname() {
 }
 
 function sendRegistration(regData) {
+    API.destroyCefBrowser(browser);
     API.triggerServerEvent("onClientStartRegister", regData);
 }
