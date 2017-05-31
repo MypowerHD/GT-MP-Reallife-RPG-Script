@@ -1,4 +1,5 @@
-﻿using GrandTheftMultiplayer.Server.API;
+﻿using System;
+using GrandTheftMultiplayer.Server.API;
 using GrandTheftMultiplayer.Server.Elements;
 using MySql.Data.MySqlClient;
 using TerraTex_RL_RPG.Lib.Helper;
@@ -46,7 +47,8 @@ namespace TerraTex_RL_RPG.Lib.User.StartUp
 
                     updateUserEntryCommand.ExecuteNonQuery();
 
-                    StartLoginProcess(player);
+                    EnsureAllDatabaseTableEntries(rdr.GetInt32("ID"));
+                    StartLoginProcess(player, rdr);
                 }
                 else
                 {
@@ -56,7 +58,31 @@ namespace TerraTex_RL_RPG.Lib.User.StartUp
             }
         }
 
-        public void StartLoginProcess(Client player)
+        public void EnsureAllDatabaseTableEntries(int dbUserId)
+        {
+            string[] tables = new string[]
+            {
+                "user_data",
+                "user_inventory"
+            };
+
+            foreach (string table in tables)
+            {
+                MySqlCommand doesPlayerExistInDb = TTRPG.Mysql.Conn.CreateCommand();
+                doesPlayerExistInDb.CommandText = "SELECT count(UserID) FROM " + table + " WHERE UserID = @id";
+                doesPlayerExistInDb.Parameters.AddWithValue("@id", dbUserId);
+                Int32 accounts = Int32.Parse(doesPlayerExistInDb.ExecuteScalar().ToString());
+                if (accounts == 0)
+                {
+                    MySqlCommand createUserCommand = TTRPG.Mysql.Conn.CreateCommand();
+                    createUserCommand.CommandText = "INSERT INTO " + table + " (UserID) VALUES (@id)";
+                    createUserCommand.Parameters.AddWithValue("@id", dbUserId);
+                    createUserCommand.ExecuteNonQuery();
+                }
+            }
+        }
+
+        public void StartLoginProcess(Client player, MySqlDataReader userData)
         {
             // read all data here and store it to player before starting spawn
 
