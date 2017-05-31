@@ -2,6 +2,7 @@
 using GrandTheftMultiplayer.Server.Elements;
 using MySql.Data.MySqlClient;
 using Newtonsoft.Json.Linq;
+using TerraTex_RL_RPG.Lib.Helper;
 
 namespace TerraTex_RL_RPG.Lib.User.StartUp
 {
@@ -29,8 +30,11 @@ namespace TerraTex_RL_RPG.Lib.User.StartUp
                 
                 MySqlCommand createUserCommand = TTRPG.Mysql.Conn.CreateCommand();
                 createUserCommand.CommandText =
-                    "INSERT INTO user (Nickname, Forename, Lastname, Password, Gender, Birthday, History, Last_Fingerprint, EMail) " +
-                    "VALUES (@nickname, @forename, @lastname, @password, @gender, @birthday, @history, @last_fingerprint, @email)";
+                    "INSERT INTO user (Nickname, Forename, Lastname, Password, Gender, Birthday, History, Last_Fingerprint, EMail, Salt, UUID) " +
+                    "VALUES (@nickname, @forename, @lastname, @password, @gender, @birthday, @history, @last_fingerprint, @email, @salt, uuid())";
+
+                string salt = Password.GenerateSalt();
+                password = Password.Hash(password, salt);
 
                 createUserCommand.Parameters.AddWithValue("@nickname", player.name);
                 createUserCommand.Parameters.AddWithValue("@forename", forename);
@@ -41,12 +45,15 @@ namespace TerraTex_RL_RPG.Lib.User.StartUp
                 createUserCommand.Parameters.AddWithValue("@history", history);
                 createUserCommand.Parameters.AddWithValue("@last_fingerprint", player.getSyncedData("fingerprint"));
                 createUserCommand.Parameters.AddWithValue("@email", email);
+                createUserCommand.Parameters.AddWithValue("@salt", salt);
 
                 createUserCommand.ExecuteNonQuery();
+                API.consoleOutput("Account " + player.name + "(" + createUserCommand.LastInsertedId + ") was created.");
 
-                player.sendNotification("System", "Dein Account " + player.name + " wurde erstellt.");
+                player.sendNotification("System", "Dein Account " + player.name + " wurde erstellt. Logge dich nun ein.");
 
-                //@todo: lade Login System
+                player.triggerEvent("startLogin", player.name);
+
             }
         }
     }
