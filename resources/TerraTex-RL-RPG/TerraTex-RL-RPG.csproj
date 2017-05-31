@@ -80,6 +80,8 @@
   <ItemGroup>
     <Compile Include="Lib\Data\Configs.cs" />
     <Compile Include="Lib\Data\Database.cs" />
+    <Compile Include="Lib\Helper\Password.cs" />
+    <Compile Include="Lib\User\StartUp\PlayerLogin.cs" />
     <Compile Include="Lib\User\StartUp\PlayerRegister.cs" />
     <Compile Include="Lib\User\StartUp\PlayerConnection.cs" />
     <Compile Include="TerraTex_RL_RPG.cs" />
@@ -176,9 +178,6 @@
     <None Include="UI\general\Scripts\jquery-3.1.1.slim.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Configs\database.xml">
-      <SubType>Designer</SubType>
-    </Content>
     <Content Include="Configs\database_example.xml" />
     <Content Include="Gruntfile.js" />
     <Content Include="Languages\de_client.xml" />
@@ -206,9 +205,7 @@
     <Content Include="UI\Register_Login_Profile\Login.html" />
     <Content Include="UI\Register_Login_Profile\Register.html" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Lib\Helper\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <TypeScriptCompile Include="types-gt-mp\Declarations.d.ts" />
     <TypeScriptCompile Include="types-gt-mp\GrandTheftMultiplayer.Client.GUI.d.ts" />
