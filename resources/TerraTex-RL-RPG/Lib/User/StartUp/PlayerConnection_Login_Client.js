@@ -30,7 +30,3 @@ function sendLogin(regData) {
     API.destroyCefBrowser(browser);
     API.triggerServerEvent("onClientStartLogin", regData);
 }
-
-function sendNotification(text) {
-    API.sendNotification(text);
-}
