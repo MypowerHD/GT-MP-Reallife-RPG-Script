@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data;
 using GrandTheftMultiplayer.Server.API;
 using GrandTheftMultiplayer.Server.Elements;
 using MySql.Data.MySqlClient;
@@ -23,16 +24,19 @@ namespace TerraTex_RL_RPG.Lib.User.StartUp
 
                 MySqlCommand doesPlayerExistInDb = TTRPG.Mysql.Conn.CreateCommand();
 
-                doesPlayerExistInDb.CommandText = "SELECT count(ID) FROM user WHERE Nickname = @nickname";
+                doesPlayerExistInDb.CommandText = "SELECT * FROM user WHERE Nickname = @nickname";
                 doesPlayerExistInDb.Parameters.AddWithValue("@nickname", player.name);
 
-                MySqlDataReader rdr = doesPlayerExistInDb.ExecuteReader();
+                //MySqlDataReader rdr = doesPlayerExistInDb.ExecuteReader();
+                DataTable result = new DataTable();
+
+                result.Load(doesPlayerExistInDb.ExecuteReader());
                 
                 // There should only be one account. so we do not need a loop
-                rdr.Read();
+                //rdr.Read();
 
-                string salt = rdr.GetString("Salt");
-                string dbPassword = rdr.GetString("Password");
+                string salt = (string) result.Rows[0]["Salt"];
+                string dbPassword = (string)result.Rows[0]["Password"];
 
                 if (Password.Hash(password, salt).Equals(dbPassword))
                 {
@@ -47,8 +51,8 @@ namespace TerraTex_RL_RPG.Lib.User.StartUp
 
                     updateUserEntryCommand.ExecuteNonQuery();
 
-                    EnsureAllDatabaseTableEntries(rdr.GetInt32("ID"));
-                    StartLoginProcess(player, rdr);
+                    EnsureAllDatabaseTableEntries((Int32)result.Rows[0]["ID"]);
+                    StartLoginProcess(player, result);
                 }
                 else
                 {
@@ -82,9 +86,10 @@ namespace TerraTex_RL_RPG.Lib.User.StartUp
             }
         }
 
-        public void StartLoginProcess(Client player, MySqlDataReader userData)
+        public void StartLoginProcess(Client player, DataTable userData)
         {
             // read all data here and store it to player before starting spawn
+           
 
         }
     }

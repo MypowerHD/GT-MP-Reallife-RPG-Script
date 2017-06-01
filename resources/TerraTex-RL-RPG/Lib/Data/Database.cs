@@ -34,7 +34,7 @@ namespace TerraTex_RL_RPG.Lib.Data
                 ;
 
                 string myConnectionString = "server=" + host + ";uid=" + user + ";" + "pwd=" + password + ";database=" +
-                                            database + ";";
+                                            database + ";Allow Zero Datetime=true;";
 
                 try
                 {
