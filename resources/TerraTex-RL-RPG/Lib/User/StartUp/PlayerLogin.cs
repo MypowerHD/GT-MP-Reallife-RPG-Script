@@ -1,4 +1,5 @@
 ﻿using System;
+using System.CodeDom;
 using System.Data;
 using GrandTheftMultiplayer.Server.API;
 using GrandTheftMultiplayer.Server.Elements;
@@ -26,14 +27,10 @@ namespace TerraTex_RL_RPG.Lib.User.StartUp
 
                 doesPlayerExistInDb.CommandText = "SELECT * FROM user WHERE Nickname = @nickname";
                 doesPlayerExistInDb.Parameters.AddWithValue("@nickname", player.name);
-
-                //MySqlDataReader rdr = doesPlayerExistInDb.ExecuteReader();
+                
                 DataTable result = new DataTable();
 
                 result.Load(doesPlayerExistInDb.ExecuteReader());
-                
-                // There should only be one account. so we do not need a loop
-                //rdr.Read();
 
                 string salt = (string) result.Rows[0]["Salt"];
                 string dbPassword = (string)result.Rows[0]["Password"];
@@ -82,15 +79,28 @@ namespace TerraTex_RL_RPG.Lib.User.StartUp
                     createUserCommand.CommandText = "INSERT INTO " + table + " (UserID) VALUES (@id)";
                     createUserCommand.Parameters.AddWithValue("@id", dbUserId);
                     createUserCommand.ExecuteNonQuery();
-                }
+                } 
             }
         }
 
-        public void StartLoginProcess(Client player, DataTable userData)
+        public void StartLoginProcess(Client player, DataTable dbUser)
         {
             // read all data here and store it to player before starting spawn
-           
+            int userId = (int) dbUser.Rows[0]["ID"];
+            DataRow userData = GetDataFromUserTable("user_data", userId);
+            DataRow userInventory = GetDataFromUserTable("user_inventory", userId);
+            
 
+        }
+
+        public DataRow GetDataFromUserTable(string table, int userID)
+        {
+            MySqlCommand getUserDataCommand = TTRPG.Mysql.Conn.CreateCommand();
+            getUserDataCommand.CommandText = "SELECT * FROM " + table + " WHERE UserID = @id";
+            getUserDataCommand.Parameters.AddWithValue("id", userID);
+            DataTable result = new DataTable();
+            result.Load(getUserDataCommand.ExecuteReader());
+            return result.Rows[0];
         }
     }
 }
