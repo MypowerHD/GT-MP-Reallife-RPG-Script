@@ -38,17 +38,19 @@ namespace TerraTex_RL_RPG.Lib.User.StartUp
                 {
                     // Password was correct and now Update fingerprint and last login
                     // before starting Login process
+                    if (!CheckDevServerLogin(player, result.Rows[0]))
+                    {
+                        MySqlCommand updateUserEntryCommand = TTRPG.Mysql.Conn.CreateCommand();
+                        updateUserEntryCommand.CommandText =
+                            "UPDATE user SET Last_Fingerprint = @fingerprint, Last_Login=current_timestamp() WHERE Nickname=@nickname";
+                        updateUserEntryCommand.Parameters.AddWithValue("fingerprint", player.getSyncedData("fingerprint"));
+                        updateUserEntryCommand.Parameters.AddWithValue("nickname", player.name);
 
-                    MySqlCommand updateUserEntryCommand = TTRPG.Mysql.Conn.CreateCommand();
-                    updateUserEntryCommand.CommandText =
-                        "UPDATE user SET Last_Fingerprint = @fingerprint, Last_Login=current_timestamp() WHERE Nickname=@nickname";
-                    updateUserEntryCommand.Parameters.AddWithValue("fingerprint", player.getSyncedData("fingerprint"));
-                    updateUserEntryCommand.Parameters.AddWithValue("nickname", player.name);
+                        updateUserEntryCommand.ExecuteNonQuery();
 
-                    updateUserEntryCommand.ExecuteNonQuery();
-
-                    EnsureAllDatabaseTableEntries((Int32)result.Rows[0]["ID"]);
-                    StartLoginProcess(player, result.Rows[0]);
+                        EnsureAllDatabaseTableEntries((Int32)result.Rows[0]["ID"]);
+                        StartLoginProcess(player, result.Rows[0]);
+                    }
                 }
                 else
                 {
@@ -56,6 +58,20 @@ namespace TerraTex_RL_RPG.Lib.User.StartUp
                     player.triggerEvent("startLogin", player.name);
                 }
             }
+        }
+
+        private bool CheckDevServerLogin(Client player, DataRow userData)
+        {
+            if (TTRPG.Configs.GetConfig("server").GetElementsByTagName("host")[0].InnerText.Equals("1"))
+            {
+                if ((int)userData["Dev"] == 0)
+                {
+                    player.sendNotification("System-Error", "Du hast keine Berechtigung, dich auf dem DevServer einzuloggen.", false);
+                    player.triggerEvent("startLogin", player.name);
+                    return true;
+                }
+            }
+            return false;
         }
 
         private void EnsureAllDatabaseTableEntries(int dbUserId)

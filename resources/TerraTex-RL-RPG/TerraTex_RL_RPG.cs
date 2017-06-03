@@ -1,7 +1,5 @@
-﻿using System;
-using System.IO;
-using System.Reflection;
-using GrandTheftMultiplayer.Server.API;
+﻿using GrandTheftMultiplayer.Server.API;
+using GrandTheftMultiplayer.Server.Constant;
 using TerraTex_RL_RPG.Lib.Data;
 
 namespace TerraTex_RL_RPG
@@ -23,6 +21,11 @@ namespace TerraTex_RL_RPG
             TTRPG.Configs = new Configs();
             TTRPG.Mysql = new Database();
 
+            if (!TTRPG.Configs.ConfigExists("server"))
+            {
+                TTRPG.Api.consoleOutput(LogCat.Fatal, "Configuration for server is missing in Configs directory.");
+                TTRPG.Api.stopResource(TTRPG.Api.getThisResource());
+            }
 
             API.consoleOutput("Starting TerraTex_RL_RPG Gamemode");
         }
