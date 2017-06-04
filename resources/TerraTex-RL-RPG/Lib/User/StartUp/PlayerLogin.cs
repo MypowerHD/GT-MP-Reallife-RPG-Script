@@ -3,6 +3,7 @@ using System.Data;
 using GrandTheftMultiplayer.Server.API;
 using GrandTheftMultiplayer.Server.Elements;
 using MySql.Data.MySqlClient;
+using TerraTex_RL_RPG.Lib.Admin;
 using TerraTex_RL_RPG.Lib.Helper;
 
 namespace TerraTex_RL_RPG.Lib.User.StartUp
@@ -38,7 +39,7 @@ namespace TerraTex_RL_RPG.Lib.User.StartUp
                 {
                     // Password was correct and now Update fingerprint and last login
                     // before starting Login process
-                    if (!CheckDevServerLogin(player, result.Rows[0]))
+                    if (!DevServer.CheckDevServerLogin(player, result.Rows[0]))
                     {
                         MySqlCommand updateUserEntryCommand = TTRPG.Mysql.Conn.CreateCommand();
                         updateUserEntryCommand.CommandText =
@@ -58,20 +59,6 @@ namespace TerraTex_RL_RPG.Lib.User.StartUp
                     player.triggerEvent("startLogin", player.name);
                 }
             }
-        }
-
-        private bool CheckDevServerLogin(Client player, DataRow userData)
-        {
-            if (TTRPG.Configs.GetConfig("server").GetElementsByTagName("host")[0].InnerText.Equals("1"))
-            {
-                if ((int)userData["Dev"] == 0)
-                {
-                    player.sendNotification("System-Error", "Du hast keine Berechtigung, dich auf dem DevServer einzuloggen.", false);
-                    player.triggerEvent("startLogin", player.name);
-                    return true;
-                }
-            }
-            return false;
         }
 
         private void EnsureAllDatabaseTableEntries(int dbUserId)

@@ -78,6 +78,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Lib\Admin\DevServer.cs" />
     <Compile Include="Lib\Data\Configs.cs" />
     <Compile Include="Lib\Data\Database.cs" />
     <Compile Include="Lib\Helper\Password.cs" />
@@ -179,6 +180,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Configs\database_example.xml" />
+    <Content Include="Configs\server_example.xml" />
     <Content Include="Gruntfile.js" />
     <Content Include="Languages\de_client.xml" />
     <Content Include="Languages\de_server.xml" />
