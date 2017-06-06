@@ -1,6 +1,8 @@
-﻿using GrandTheftMultiplayer.Server.API;
+﻿using System.Threading;
+using GrandTheftMultiplayer.Server.API;
 using GrandTheftMultiplayer.Server.Constant;
 using TerraTex_RL_RPG.Lib.Data;
+using TerraTex_RL_RPG.Lib.User.Threads;
 
 namespace TerraTex_RL_RPG
 {
@@ -9,14 +11,16 @@ namespace TerraTex_RL_RPG
         static public Database Mysql;
         static public Configs Configs;
         static public API Api;
+        static public StorePlayerData StorePlayerDataObject;
+        static private Thread _storePlayerDataThread;
 
         public TTRPG()
         {
             TTRPG.Api = API;
-            API.onResourceStart += TTStartUp;
+            API.onResourceStart += TtStartUp;
         }
 
-        public void TTStartUp()
+        public void TtStartUp()
         {
             TTRPG.Configs = new Configs();
             TTRPG.Mysql = new Database();
@@ -28,6 +32,10 @@ namespace TerraTex_RL_RPG
             }
 
             API.consoleOutput("Starting TerraTex_RL_RPG Gamemode");
+
+            StorePlayerDataObject = new StorePlayerData();
+            _storePlayerDataThread = API.startThread(StorePlayerDataObject.DoWork);
         }
+        
     }
 }

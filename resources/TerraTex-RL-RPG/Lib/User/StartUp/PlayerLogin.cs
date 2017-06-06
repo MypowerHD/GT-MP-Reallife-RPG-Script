@@ -8,12 +8,10 @@ using TerraTex_RL_RPG.Lib.Helper;
 
 namespace TerraTex_RL_RPG.Lib.User.StartUp
 {
-
     class PlayerLogin : Script
     {
-
         public PlayerLogin()
-        { 
+        {
             API.onClientEventTrigger += OnClientEvent;
         }
 
@@ -27,13 +25,13 @@ namespace TerraTex_RL_RPG.Lib.User.StartUp
 
                 doesPlayerExistInDb.CommandText = "SELECT * FROM user WHERE Nickname = @nickname";
                 doesPlayerExistInDb.Parameters.AddWithValue("@nickname", player.name);
-                
+
                 DataTable result = new DataTable();
 
                 result.Load(doesPlayerExistInDb.ExecuteReader());
 
                 string salt = (string) result.Rows[0]["Salt"];
-                string dbPassword = (string)result.Rows[0]["Password"];
+                string dbPassword = (string) result.Rows[0]["Password"];
 
                 if (Password.Hash(password, salt).Equals(dbPassword))
                 {
@@ -44,18 +42,23 @@ namespace TerraTex_RL_RPG.Lib.User.StartUp
                         MySqlCommand updateUserEntryCommand = TTRPG.Mysql.Conn.CreateCommand();
                         updateUserEntryCommand.CommandText =
                             "UPDATE user SET Last_Fingerprint = @fingerprint, Last_Login=current_timestamp() WHERE Nickname=@nickname";
-                        updateUserEntryCommand.Parameters.AddWithValue("fingerprint", player.getSyncedData("fingerprint"));
+                        updateUserEntryCommand.Parameters.AddWithValue("fingerprint",
+                            player.getSyncedData("fingerprint"));
                         updateUserEntryCommand.Parameters.AddWithValue("nickname", player.name);
 
                         updateUserEntryCommand.ExecuteNonQuery();
 
-                        EnsureAllDatabaseTableEntries((Int32)result.Rows[0]["ID"]);
+                        EnsureAllDatabaseTableEntries((Int32) result.Rows[0]["ID"]);
                         StartLoginProcess(player, result.Rows[0]);
+
+                        player.setSyncedData("loggedin", true);
+                        API.consoleOutput("Account " + player.name + "(" + player.getSyncedData("ID") + ") logged in.");
                     }
                 }
                 else
                 {
-                    player.sendNotification("System-Error", "Das Passwort, dass du eingegeben hast, ist fehlerhaft.", false);
+                    player.sendNotification("System-Error", "Das Passwort, dass du eingegeben hast, ist fehlerhaft.",
+                        false);
                     player.triggerEvent("startLogin", player.name);
                 }
             }
@@ -81,7 +84,7 @@ namespace TerraTex_RL_RPG.Lib.User.StartUp
                     createUserCommand.CommandText = "INSERT INTO " + table + " (UserID) VALUES (@id)";
                     createUserCommand.Parameters.AddWithValue("@id", dbUserId);
                     createUserCommand.ExecuteNonQuery();
-                } 
+                }
             }
         }
 
@@ -96,21 +99,20 @@ namespace TerraTex_RL_RPG.Lib.User.StartUp
 
             DataRow userInventory = GetDataFromUserTable("user_inventory", userId);
             ApplyTableToPlayerUserInventory(player, userInventory);
-
         }
 
         private void ApplyTableToPlayerUser(Client player, DataRow data)
         {
-            player.setSyncedData("ID", (int)data["ID"]);
-            player.setSyncedData("UUID", (string)data["UUID"]);
-            player.setSyncedData("Nickname", (string)data["Nickname"]);
-            player.setSyncedData("Forename", (string)data["Forename"]);
-            player.setSyncedData("Lastname", (string)data["Lastname"]);
-            player.setSyncedData("Gender", (string)data["Gender"]);
-            player.setSyncedData("Birthday", (string)data["Birthday"]);
-            player.setSyncedData("History", (string)data["History"]);
-            player.setSyncedData("Admin", (int)data["Admin"]);
-            player.setSyncedData("Dev", (int)data["Dev"]);
+            player.setSyncedData("ID", (int) data["ID"]);
+            player.setSyncedData("UUID", (string) data["UUID"]);
+            player.setSyncedData("Nickname", (string) data["Nickname"]);
+            player.setSyncedData("Forename", (string) data["Forename"]);
+            player.setSyncedData("Lastname", (string) data["Lastname"]);
+            player.setSyncedData("Gender", (string) data["Gender"]);
+            player.setSyncedData("Birthday", (string) data["Birthday"]);
+            player.setSyncedData("History", (string) data["History"]);
+            player.setSyncedData("Admin", (int) data["Admin"]);
+            player.setSyncedData("Dev", (int) data["Dev"]);
         }
 
         private void ApplyTableToPlayerUserData(Client player, DataRow data)
