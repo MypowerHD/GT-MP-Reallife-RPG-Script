@@ -22,7 +22,7 @@ namespace TerraTex_RL_RPG.Lib.Admin
 
         public static bool CheckDevCommandAccess(Client player)
         {
-            if (TTRPG.Configs.GetConfig("server").GetElementsByTagName("host")[0].InnerText.Equals("1"))
+            if (TTRPG.Configs.GetConfig("server").GetElementsByTagName("isDevServer")[0].InnerText.Equals("1"))
             {
                 if (player.getSyncedData("Dev") > 1)
                 {
