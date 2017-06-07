@@ -36,3 +36,5 @@ CREATE TABLE user_inventory
 );
 CREATE UNIQUE INDEX user_inventory_Phone_uindex ON user_inventory (Phone);
 
+ALTER TABLE user_inventory ALTER COLUMN Phone SET DEFAULT NULL ;
+

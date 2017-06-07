@@ -126,7 +126,14 @@ namespace TerraTex_RL_RPG.Lib.User.StartUp
         {
             player.setSyncedData("Money", (int) data["Money"]);
             player.setSyncedData("BankAccount", (int) data["BankAccount"]);
-            player.setSyncedData("Phone", (int) data["Phone"]);
+            if (data["Phone"] != DBNull.Value)
+            {
+                player.setSyncedData("Phone", (int) data["Phone"]);
+            }
+            else
+            {
+                player.setSyncedData("Phone", -1);
+            }
         }
 
         private DataRow GetDataFromUserTable(string table, int userId)
