@@ -8,8 +8,7 @@ namespace TerraTex_RL_RPG.Lib.User.SpawnAndDeath
         public static void Spawn(Client player)
         {
             player.nametagVisible = true;
-            player.invincible = true;
-            player.position = new Vector3(0, 0, 20);
+            player.position = new Vector3(259.8162, -1204.156, 29.28907);
             player.transparency = 255;
             player.freeze(false);
             player.collisionless = false;

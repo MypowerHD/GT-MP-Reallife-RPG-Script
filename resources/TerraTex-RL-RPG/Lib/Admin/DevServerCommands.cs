@@ -31,7 +31,7 @@ namespace TerraTex_RL_RPG.Lib.Admin
                     File.WriteAllText(path, createText);
                 }
 
-                string appendText = position.X + ", " + position.Y + ", " + position.Z + " // " + info + Environment.NewLine;
+                string appendText = position.X.ToString().Replace(",", ".") + ", " + position.Y.ToString().Replace(",", ".") + ", " + position.Z.ToString().Replace(",", ".") + " // " + info + Environment.NewLine;
                 File.AppendAllText(path, appendText);
                 player.sendNotification("Dev-System", "Saved Position: X: " + position.X + "; Y: " + position.Y + "; Z: " + position.Z);
             }

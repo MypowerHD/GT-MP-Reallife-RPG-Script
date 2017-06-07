@@ -54,6 +54,7 @@ namespace TerraTex_RL_RPG.Lib.User.StartUp
 
                         player.setSyncedData("loggedin", true);
                         API.consoleOutput("Account " + player.name + "(" + player.getSyncedData("ID") + ") logged in.");
+                        player.invincible = false;
                         PlayerSpawnManager.Spawn(player);
                     }
                 }
