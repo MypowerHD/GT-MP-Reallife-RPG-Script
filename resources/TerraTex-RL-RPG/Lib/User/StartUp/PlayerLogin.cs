@@ -111,7 +111,7 @@ namespace TerraTex_RL_RPG.Lib.User.StartUp
             player.setSyncedData("Forename", (string) data["Forename"]);
             player.setSyncedData("Lastname", (string) data["Lastname"]);
             player.setSyncedData("Gender", (string) data["Gender"]);
-            player.setSyncedData("Birthday", (DateTime) data["Birthday"]);
+            player.setSyncedData("Birthday", DateTime.Parse(data["Birthday"].ToString()));
             player.setSyncedData("History", (string) data["History"]);
             player.setSyncedData("Admin", (int) data["Admin"]);
             player.setSyncedData("Dev", (int) data["Dev"]);
