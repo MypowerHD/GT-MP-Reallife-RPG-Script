@@ -5,6 +5,7 @@ using GrandTheftMultiplayer.Server.Elements;
 using MySql.Data.MySqlClient;
 using TerraTex_RL_RPG.Lib.Admin;
 using TerraTex_RL_RPG.Lib.Helper;
+using TerraTex_RL_RPG.Lib.User.SpawnAndDeath;
 
 namespace TerraTex_RL_RPG.Lib.User.StartUp
 {
@@ -53,6 +54,7 @@ namespace TerraTex_RL_RPG.Lib.User.StartUp
 
                         player.setSyncedData("loggedin", true);
                         API.consoleOutput("Account " + player.name + "(" + player.getSyncedData("ID") + ") logged in.");
+                        PlayerSpawnManager.Spawn(player);
                     }
                 }
                 else
