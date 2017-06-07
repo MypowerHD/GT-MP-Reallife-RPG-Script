@@ -22,7 +22,7 @@ namespace TerraTex_RL_RPG.Lib.Admin
             if (DevServer.CheckDevCommandAccess(player))
             {
                 Vector3 position = player.position;
-
+                Directory.CreateDirectory(API.getResourceFolder() + "/Logs");
                 string path = API.getResourceFolder() + "/Logs/Position.log";
                 
                 if (!File.Exists(path))
