@@ -54,8 +54,8 @@ namespace TerraTex_RL_RPG.Lib.User.Threads
         {
             MySqlCommand updateUserCommand = TTRPG.Mysql.Conn.CreateCommand();
             updateUserCommand.CommandText = "UPDATE user_inventory SET " +
-                                            "Money = @Money " +
-                                            "BankAccount = @BankAccount " +
+                                            "Money = @Money, " +
+                                            "BankAccount = @BankAccount, " +
                                             "Phone = @Phone " +
                                             "WHERE UserID = @UserID";
 
