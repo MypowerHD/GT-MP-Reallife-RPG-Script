@@ -1,4 +1,5 @@
 ﻿using System.Data;
+using System.Runtime.Remoting;
 using GrandTheftMultiplayer.Server.Elements;
 
 namespace TerraTex_RL_RPG.Lib.Admin
@@ -17,6 +18,32 @@ namespace TerraTex_RL_RPG.Lib.Admin
                 }
             }
             return false;
+        }
+
+        public static bool CheckDevCommandAccess(Client player)
+        {
+            if (TTRPG.Configs.GetConfig("server").GetElementsByTagName("host")[0].InnerText.Equals("1"))
+            {
+                if (player.getSyncedData("Dev") > 1)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                if (player.getSyncedData("Dev") > 2)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
         }
     }
 }
