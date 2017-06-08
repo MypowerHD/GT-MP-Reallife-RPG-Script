@@ -58,6 +58,7 @@ namespace TerraTex_RL_RPG.Lib.User.StartUp
                         PlayerSpawnManager.Spawn(player);
 
                         TTRPG.Api.exported.scoreboard.setPlayerScoreboardData(player, "ID", result.Rows[0]["ID"].ToString());
+                        TTRPG.Api.exported.scoreboard.setPlayerScoreboardData(player, "Nickname", player.name);
                     }
                 }
                 else

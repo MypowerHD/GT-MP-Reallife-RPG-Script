@@ -84,6 +84,7 @@
     <Compile Include="Lib\Data\Configs.cs" />
     <Compile Include="Lib\Data\Database.cs" />
     <Compile Include="Lib\Helper\Password.cs" />
+    <Compile Include="Lib\Helper\Player.cs" />
     <Compile Include="Lib\User\SpawnAndDeath\PlayerSpawnManager.cs" />
     <Compile Include="Lib\User\StartUp\PlayerDisconnection.cs" />
     <Compile Include="Lib\User\StartUp\PlayerLogin.cs" />
