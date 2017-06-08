@@ -1,4 +1,5 @@
-﻿using System.Threading;
+﻿using System.Runtime.InteropServices;
+using System.Threading;
 using GrandTheftMultiplayer.Server.API;
 using GrandTheftMultiplayer.Server.Constant;
 using TerraTex_RL_RPG.Lib.Data;
@@ -35,6 +36,10 @@ namespace TerraTex_RL_RPG
 
             StorePlayerDataObject = new StorePlayerData();
             _storePlayerDataThread = API.startThread(StorePlayerDataObject.DoWork);
+
+            API.exported.scoreboard.addScoreboardColumn("ID", "ID", 10);
+            API.exported.scoreboard.addScoreboardColumn("Vorname", "Vorname", 35);
+            API.exported.scoreboard.addScoreboardColumn("Nachname", "Nachname", 35);
         }
         
     }

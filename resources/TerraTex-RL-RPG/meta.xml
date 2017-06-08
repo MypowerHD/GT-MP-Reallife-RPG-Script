@@ -23,5 +23,8 @@
       <file src="UI/Register_Login_Profile/Register.html" />
       <file src="UI/Register_Login_Profile/Login.html" />
       <file src="UI/Register_Login_Profile/GetFingerprint.html" />
+
+
+    <include resource="scoreboard" />
   
 </meta>

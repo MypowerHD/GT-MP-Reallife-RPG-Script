@@ -56,6 +56,8 @@ namespace TerraTex_RL_RPG.Lib.User.StartUp
                         API.consoleOutput("Account " + player.name + "(" + player.getSyncedData("ID") + ") logged in.");
                         player.invincible = false;
                         PlayerSpawnManager.Spawn(player);
+
+                        TTRPG.Api.exported.scoreboard.setPlayerScoreboardData(player, "ID", result.Rows[0]["ID"].ToString());
                     }
                 }
                 else
