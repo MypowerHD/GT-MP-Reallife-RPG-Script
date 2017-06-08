@@ -37,8 +37,8 @@ namespace TerraTex_RL_RPG
             StorePlayerDataObject = new StorePlayerData();
             _storePlayerDataThread = API.startThread(StorePlayerDataObject.DoWork);
 
-            API.exported.scoreboard.addScoreboardColumn("Nachname", "Nachname", 200);
-            API.exported.scoreboard.addScoreboardColumn("Vorname", "Vorname", 200);
+            API.exported.scoreboard.addScoreboardColumn("Nachname", "Nachname", 250);
+            API.exported.scoreboard.addScoreboardColumn("Vorname", "Vorname", 250);
             API.exported.scoreboard.addScoreboardColumn("ID", "ID", 40);
         }
         
