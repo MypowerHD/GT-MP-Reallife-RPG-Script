@@ -3,7 +3,7 @@ using System.Text;
 
 namespace TerraTex_RL_RPG.Lib.Helper
 {
-    class Password
+    class PasswordHelper
     {
         public static string Hash(string password, string salt)
         {

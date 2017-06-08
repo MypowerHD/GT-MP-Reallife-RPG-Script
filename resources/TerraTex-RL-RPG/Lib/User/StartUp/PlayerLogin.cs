@@ -34,7 +34,7 @@ namespace TerraTex_RL_RPG.Lib.User.StartUp
                 string salt = (string) result.Rows[0]["Salt"];
                 string dbPassword = (string) result.Rows[0]["Password"];
 
-                if (Password.Hash(password, salt).Equals(dbPassword))
+                if (PasswordHelper.Hash(password, salt).Equals(dbPassword))
                 {
                     // Password was correct and now Update fingerprint and last login
                     // before starting Login process
@@ -121,6 +121,7 @@ namespace TerraTex_RL_RPG.Lib.User.StartUp
         private void ApplyTableToPlayerUserData(Client player, DataRow data)
         {
             player.setSyncedData("PlayTime", (int) data["PlayTime"]);
+            player.setSyncedData("Skin", (string) data["Skin"]);
         }
 
         private void ApplyTableToPlayerUserInventory(Client player, DataRow data)

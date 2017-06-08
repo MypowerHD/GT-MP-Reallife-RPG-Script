@@ -39,10 +39,12 @@ namespace TerraTex_RL_RPG.Lib.User.Threads
         {
             MySqlCommand updateUserCommand = TTRPG.Mysql.Conn.CreateCommand();
             updateUserCommand.CommandText = "UPDATE user_data SET " +
-                                            "PlayTime = @PlayTime " +
+                                            "PlayTime = @PlayTime, " +
+                                            "Skin = @Skin " +
                                             "WHERE UserID = @UserID";
 
             updateUserCommand.Parameters.AddWithValue("@PlayTime", player.getSyncedData("PlayTime"));
+            updateUserCommand.Parameters.AddWithValue("@Skin", player.getSyncedData("Skin"));
 
             // general ID
             updateUserCommand.Parameters.AddWithValue("@UserID", player.getSyncedData("ID"));
