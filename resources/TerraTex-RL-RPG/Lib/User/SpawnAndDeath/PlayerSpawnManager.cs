@@ -27,6 +27,11 @@ namespace TerraTex_RL_RPG.Lib.User.SpawnAndDeath
             string forename = player.getSyncedData("Forename");
             string lastname = player.getSyncedData("Lastname");
 
+            // Additionally set PlayerName in Scoreboard
+            TTRPG.Api.exported.scoreboard.setPlayerScoreboardData(player, "Vorname", forename);
+            TTRPG.Api.exported.scoreboard.setPlayerScoreboardData(player, "Nachname", lastname);
+
+            // generate Nametag
             string nameTag = "[" + id + "]" + nickname;
 
             forename = nameTag.Length <= 20 ? forename : (forename[0] + ".");
@@ -36,6 +41,7 @@ namespace TerraTex_RL_RPG.Lib.User.SpawnAndDeath
             nameTag += lastname + ")";
 
             TTRPG.Api.setPlayerNametag(player, nameTag);
+
         }
 
         public static void SetPlayerSkin(Client player)

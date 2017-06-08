@@ -40,8 +40,8 @@ node('windows') {
 
 node('master') {
 	stage('Deploy') {
-		unstash 'compiled'
 		if (env.BRANCH_NAME == 'master') {
+			unstash 'compiled'
 		
 			sh 'sed -i -- \'s/9090/9091/g\' resources/LocalTelnetAdmin/meta.xml'
 		
@@ -52,7 +52,9 @@ node('master') {
 			sh 'ssh root@terratex.eu "xcopy \\"D:/TerraTex/Spiele/GTMP/02_configs/live\\" \\"D:/TerraTex/Spiele/GTMP/01_server/live/resources/TerraTex-RL-RPG/Configs\\" /E /Y /I"'
 			sh 'ssh root@terratex.eu "xcopy \\"D:/TerraTex/Spiele/GTMP/03_shared_packages\\" \\"D:/TerraTex/Spiele/GTMP/01_server/live/resources\\" /E /Y /I"'
 			
-		} else if (env.BRANCH_NAME == 'develop') {
+		} else if (env.BRANCH_NAME == 'develop') {		
+			unstash 'compiled'
+			
 			sh 'ssh root@terratex.eu "rmdir \\"D:/TerraTex/Spiele/GTMP/01_server/dev/resources\\" /s /q"'
 			sh 'ssh root@terratex.eu "mkdir \\"D:/TerraTex/Spiele/GTMP/01_server/dev/resources/TerraTex-RL-RPG\\""'
 			sh 'scp -r ./resources/TerraTex-RL-RPG root@terratex.eu:"D:/TerraTex/Spiele/GTMP/01_server/dev/resources"'
