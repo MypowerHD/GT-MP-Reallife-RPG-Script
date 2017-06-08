@@ -35,6 +35,8 @@ namespace TerraTex_RL_RPG
 
             StorePlayerDataObject = new StorePlayerData();
             _storePlayerDataThread = API.startThread(StorePlayerDataObject.DoWork);
+
+            API.startResource("playerlist-pro");
         }
         
     }
