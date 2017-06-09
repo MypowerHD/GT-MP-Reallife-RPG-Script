@@ -31,7 +31,7 @@ namespace TerraTex_RL_RPG.Lib.Threads
 
                         int hours = playTime / 60;
                         sbd.Append(hours);
-
+                        sbd.Append(" | ");
                         int minutes = playTime - hours * 60;
                         sbd.Append(minutes.ToString("D2"));
 
