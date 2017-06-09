@@ -56,8 +56,8 @@ namespace TerraTex_RL_RPG
             _api.startThread(_updatePlayerPlayTimeThread.DoWork);
 
             _api.exported.scoreboard.addScoreboardColumn("PlayTime", "PlayTime", 120);
-            _api.exported.scoreboard.addScoreboardColumn("Nachname", "Nachname", 250);
-            _api.exported.scoreboard.addScoreboardColumn("Vorname", "Vorname", 250);
+            _api.exported.scoreboard.addScoreboardColumn("Nachname", "Nachname", 175);
+            _api.exported.scoreboard.addScoreboardColumn("Vorname", "Vorname", 175);
             _api.exported.scoreboard.addScoreboardColumn("ID", "ID", 40);
         }
     }

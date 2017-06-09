@@ -188,6 +188,7 @@
     <Content Include="Configs\database_example.xml" />
     <Content Include="Configs\server_example.xml" />
     <Content Include="Gruntfile.js" />
+    <Content Include="Lib\Hud\InfoHud.js" />
     <Content Include="Lib\User\StartUp\PlayerConnection_Client.js" />
     <Content Include="Lib\User\StartUp\PlayerConnection_Login_Client.js" />
     <Content Include="Lib\User\StartUp\PlayerConnection_Register_Client.js" />
@@ -210,6 +211,7 @@
     <Content Include="UI\Register_Login_Profile\GetFingerprint.html" />
     <Content Include="UI\Register_Login_Profile\Login.html" />
     <Content Include="UI\Register_Login_Profile\Register.html" />
+    <Content Include="UI\Workaround.html" />
   </ItemGroup>
   <ItemGroup>
     <Analyzer Include="..\packages\SonarAnalyzer.CSharp.5.11.0.1761\analyzers\Google.Protobuf.dll" />

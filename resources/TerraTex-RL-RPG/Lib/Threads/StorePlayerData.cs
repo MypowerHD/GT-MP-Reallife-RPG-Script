@@ -61,8 +61,8 @@ namespace TerraTex_RL_RPG.Lib.Threads
                                             "Phone = @Phone " +
                                             "WHERE UserID = @UserID";
 
-            updateUserCommand.Parameters.AddWithValue("@Money", player.getSyncedData("Money"));
-            updateUserCommand.Parameters.AddWithValue("@BankAccount", player.getSyncedData("BankAccount"));
+            updateUserCommand.Parameters.AddWithValue("@Money", (decimal)player.getSyncedData("Money"));
+            updateUserCommand.Parameters.AddWithValue("@BankAccount", (decimal)player.getSyncedData("BankAccount"));
             if (player.getSyncedData("Phone") != -1)
             {
                 updateUserCommand.Parameters.AddWithValue("@Phone", player.getSyncedData("Phone"));
