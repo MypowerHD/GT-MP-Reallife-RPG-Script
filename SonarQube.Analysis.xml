@@ -4,7 +4,7 @@
   <Property Name="sonar.verbose">false</Property>
   <Property Name="sonar.projectKey">terratex:gtmp-rl-rpg</Property>
   <Property Name="sonar.projectName">TerraTex GT-MP Reallife RPG</Property>
-  <Property Name="sonar.sources">.</Property>
-  <Property Name="sonar.exclusions">resources/packages/**/*.*,**/UI/general/**/*.*,**/node_modules/**/*.*,**/*.css,**/bin/**/*.*</Property>
+  <Property Name="sonar.sources">resources/TerraTex-RL-RPG</Property>
+  <Property Name="sonar.exclusions">**/UI/general/**/*.*,**/node_modules/**/*.*,**/*.css,**/bin/**/*.*</Property>
   <Property Name="sonar.projectBaseDir">.</Property>   
 </SonarQubeAnalysisProperties>
