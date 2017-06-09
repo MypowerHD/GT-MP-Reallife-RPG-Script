@@ -9,38 +9,47 @@ namespace TerraTex_RL_RPG
 {
     public class TTRPG : Script
     {
-        static public Database Mysql;
-        static public Configs Configs;
-        static public API Api;
-        static public StorePlayerData StorePlayerDataObject;
-        static private Thread _storePlayerDataThread;
+        private static Database _mysql;
+        private static Configs _configs;
+        private static API _api;
+        private static StorePlayerData _storePlayerDataObject;
+        private static Thread _storePlayerDataThread;
+
+        public static Database Mysql => _mysql;
+
+        public static Configs Configs => _configs;
+
+        public static API Api => _api;
+
+        public static StorePlayerData StorePlayerDataObject => _storePlayerDataObject;
+
+        public static Thread StorePlayerDataThread => _storePlayerDataThread;
 
         public TTRPG()
         {
-            TTRPG.Api = API;
+            _api = API;
             API.onResourceStart += TtStartUp;
         }
 
         public void TtStartUp()
         {
-            TTRPG.Configs = new Configs();
-            TTRPG.Mysql = new Database();
+            _configs = new Configs();
+            _mysql = new Database();
 
-            if (!TTRPG.Configs.ConfigExists("server"))
+            if (!Configs.ConfigExists("server"))
             {
-                TTRPG.Api.consoleOutput(LogCat.Fatal, "Configuration for server is missing in Configs directory.");
-                TTRPG.Api.stopResource(TTRPG.Api.getThisResource());
+                Api.consoleOutput(LogCat.Fatal, "Configuration for server is missing in Configs directory.");
+                Api.stopResource(Api.getThisResource());
             }
 
             API.consoleOutput("Starting TerraTex_RL_RPG Gamemode");
 
-            StorePlayerDataObject = new StorePlayerData();
+            _storePlayerDataObject = new StorePlayerData();
             _storePlayerDataThread = API.startThread(StorePlayerDataObject.DoWork);
 
             API.exported.scoreboard.addScoreboardColumn("Nachname", "Nachname", 250);
             API.exported.scoreboard.addScoreboardColumn("Vorname", "Vorname", 250);
             API.exported.scoreboard.addScoreboardColumn("ID", "ID", 40);
         }
-        
     }
 }

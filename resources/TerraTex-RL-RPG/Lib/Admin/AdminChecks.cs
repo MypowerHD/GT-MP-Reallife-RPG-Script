@@ -7,7 +7,7 @@ using GrandTheftMultiplayer.Server.Elements;
 
 namespace TerraTex_RL_RPG.Lib.Admin
 {
-    class AdminChecks
+    static class AdminChecks
     {
         /// <summary>
         /// This function checks if player has correct adminlvl

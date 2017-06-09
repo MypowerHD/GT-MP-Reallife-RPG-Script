@@ -15,7 +15,6 @@ namespace TerraTex_RL_RPG.Lib.Admin
 {
     class DevServerCommands : Script
     {
-        
         [Command("save", Group = "dev", SensitiveInfo = false, GreedyArg = true)]
         public void SaveCommand(Client player, string info = "")
         {
@@ -24,16 +23,19 @@ namespace TerraTex_RL_RPG.Lib.Admin
                 Vector3 position = player.position;
                 Directory.CreateDirectory(API.getResourceFolder() + "/Logs");
                 string path = API.getResourceFolder() + "/Logs/Position.log";
-                
+
                 if (!File.Exists(path))
                 {
                     string createText = "" + Environment.NewLine;
                     File.WriteAllText(path, createText);
                 }
 
-                string appendText = position.X.ToString().Replace(",", ".") + ", " + position.Y.ToString().Replace(",", ".") + ", " + position.Z.ToString().Replace(",", ".") + " // " + info + Environment.NewLine;
+                string appendText = position.X.ToString("R").Replace(",", ".") + ", " +
+                                    position.Y.ToString("R").Replace(",", ".") + ", " +
+                                    position.Z.ToString("R").Replace(",", ".") + " // " + info + Environment.NewLine;
                 File.AppendAllText(path, appendText);
-                player.sendNotification("Dev-System", "Saved Position: X: " + position.X + "; Y: " + position.Y + "; Z: " + position.Z);
+                player.sendNotification("Dev-System",
+                    "Saved Position: X: " + position.X + "; Y: " + position.Y + "; Z: " + position.Z);
             }
         }
 
@@ -42,7 +44,7 @@ namespace TerraTex_RL_RPG.Lib.Admin
         {
             if (DevServer.CheckDevCommandAccess(player) || AdminChecks.CheckAdminLvl(player, 3))
             {
-                Vector3 position = player.position.Add(new Vector3(2,2,2));
+                Vector3 position = player.position.Add(new Vector3(2, 2, 2));
                 Vector3 rotation = player.rotation;
 
                 VehicleHash myVehicle = API.vehicleNameToModel(vehicleModelName);

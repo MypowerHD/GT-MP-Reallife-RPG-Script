@@ -4,7 +4,7 @@ using TerraTex_RL_RPG.Lib.Helper;
 
 namespace TerraTex_RL_RPG.Lib.User.SpawnAndDeath
 {
-    public class PlayerSpawnManager
+    public static class PlayerSpawnManager
     {
         public static void Spawn(Client player)
         {

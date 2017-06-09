@@ -3,7 +3,7 @@ using System.Text;
 
 namespace TerraTex_RL_RPG.Lib.Helper
 {
-    class PasswordHelper
+    static class PasswordHelper
     {
         public static string Hash(string password, string salt)
         {
@@ -18,12 +18,13 @@ namespace TerraTex_RL_RPG.Lib.Helper
             string salt = "";
             const string digits = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz-+.:;?&$!_";
             Random randomizer = new Random();
-            
+
+            StringBuilder bld = new StringBuilder();
             for (int i = 0; i < length; i++)
             {
-                salt += digits[randomizer.Next(digits.Length - 1)];
+                bld.Append(digits[randomizer.Next(digits.Length - 1)]);
             }
-            return salt;
+            return bld.ToString();
         }
     }
 }
