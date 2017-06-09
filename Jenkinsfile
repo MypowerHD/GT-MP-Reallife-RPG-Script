@@ -1,23 +1,19 @@
-node('master'){
+node('windows'){
 	deleteDir()
 	checkout scm
 	
 	stage('Sonar-Scanner') {			
 		if (env.BRANCH_NAME != 'master') {
 			if (env.BRANCH_NAME.startsWith('PR-')) {
-				withSonarQubeEnv('TerraTex SonarQube') {
-					sh "${tool 'SonarQubeScanner'}/bin/sonar-scanner -X -Dsonar.projectVersion=${BUILD_DISPLAY_NAME} -Dsonar.analysis.mode=preview -Dsonar.github.pullRequest=${CHANGE_ID} -Dsonar.github.oauth=${github_oauth} -Dsonar.github.repository=TerraTex-Community/GTMP-Real--Roleplay-Script"
-				}
+				bat "SonarQube.Scanner.MSBuild.exe begin /key:terratex:gtmp-rl-rpg /s:SonarQube.Analysis.xml /version:${BUILD_DISPLAY_NAME} /d:sonar.analysis.mode=preview /d:sonar.github.pullRequest=${CHANGE_ID} /d:sonar.github.oauth=${github_oauth} /d:sonar.github.repository=TerraTex-Community/GTMP-Real--Roleplay-Script"
+				bat 'nuget install resources/TerraTex-RL-RPG/packages.config -OutputDirectory resources/packages'
+				bat 'msbuild resources/TerraTex-RL-RPG/TerraTex-RL-RPG.csproj'
+				bat "SonarQube.Scanner.MSBuild.exe end"			
 			} else {
-				withSonarQubeEnv('TerraTex SonarQube') {
-					sh "${tool 'SonarQubeScanner'}/bin/sonar-scanner -Dsonar.projectVersion=${BUILD_DISPLAY_NAME}"
-				}
-				timeout(time: 1, unit: 'HOURS') {
-					def qg = waitForQualityGate()
-					if (qg.status != 'OK') {
-						error "Pipeline aborted due to quality gate failure: ${qg.status}"
-					}
-				}		
+				bat "SonarQube.Scanner.MSBuild.exe begin /key:terratex:gtmp-rl-rpg /s:SonarQube.Analysis.xml /version:${BUILD_DISPLAY_NAME}"
+				bat 'nuget install resources/TerraTex-RL-RPG/packages.config -OutputDirectory resources/packages'
+				bat 'msbuild resources/TerraTex-RL-RPG/TerraTex-RL-RPG.csproj'
+				bat "SonarQube.Scanner.MSBuild.exe end"		
 			}
 		}
 	}
