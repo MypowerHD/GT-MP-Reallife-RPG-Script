@@ -38,3 +38,6 @@ CREATE UNIQUE INDEX user_inventory_Phone_uindex ON user_inventory (Phone);
 
 ALTER TABLE user_inventory ALTER COLUMN Phone SET DEFAULT NULL ;
 ALTER TABLE user_data ADD Skin VARCHAR(200) DEFAULT "0" NULL;
+
+ALTER TABLE user_inventory MODIFY Money DECIMAL(65,2) DEFAULT '0';
+ALTER TABLE user_inventory MODIFY BankAccount DECIMAL(65,2) DEFAULT '0';

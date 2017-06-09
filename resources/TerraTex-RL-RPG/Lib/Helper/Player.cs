@@ -4,7 +4,7 @@ using GrandTheftMultiplayer.Server.Elements;
 
 namespace TerraTex_RL_RPG.Lib.Helper
 {
-    public class PlayerHelper
+    public static class PlayerHelper
     {
         public static Client GetPlayerFromId(int Id)
         {

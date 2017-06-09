@@ -2,6 +2,7 @@
 using System.Data;
 using GrandTheftMultiplayer.Server.API;
 using GrandTheftMultiplayer.Server.Elements;
+using GrandTheftMultiplayer.Shared;
 using MySql.Data.MySqlClient;
 using TerraTex_RL_RPG.Lib.Admin;
 using TerraTex_RL_RPG.Lib.Helper;
@@ -129,8 +130,8 @@ namespace TerraTex_RL_RPG.Lib.User.StartUp
 
         private void ApplyTableToPlayerUserInventory(Client player, DataRow data)
         {
-            player.setSyncedData("Money", (int) data["Money"]);
-            player.setSyncedData("BankAccount", (int) data["BankAccount"]);
+            player.setSyncedData("Money", (float)(decimal) data["Money"]);
+            player.setSyncedData("BankAccount", (float)(decimal) data["BankAccount"]);
             if (data["Phone"] != DBNull.Value)
             {
                 player.setSyncedData("Phone", (int) data["Phone"]);

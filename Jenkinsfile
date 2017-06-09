@@ -1,43 +1,43 @@
-node('master'){
+node('windows'){
 	deleteDir()
 	checkout scm
 	
 	stage('Sonar-Scanner') {			
 		if (env.BRANCH_NAME != 'master') {
 			if (env.BRANCH_NAME.startsWith('PR-')) {
-				withSonarQubeEnv('TerraTex SonarQube') {
-					sh "${tool 'SonarQubeScanner'}/bin/sonar-scanner -X -Dsonar.projectVersion=${BUILD_DISPLAY_NAME} -Dsonar.analysis.mode=preview -Dsonar.github.pullRequest=${CHANGE_ID} -Dsonar.github.oauth=${github_oauth} -Dsonar.github.repository=TerraTex-Community/GTMP-Real--Roleplay-Script"
-				}
+				bat "SonarQube.Scanner.MSBuild.exe begin /key:terratex:gtmp-rl-rpg /s:${WORKSPACE}/SonarQube.Analysis.xml /version:${BUILD_DISPLAY_NAME} /d:sonar.analysis.mode=preview /d:sonar.github.pullRequest=${CHANGE_ID} /d:sonar.github.oauth=${github_oauth} /d:sonar.github.repository=TerraTex-Community/GTMP-Real--Roleplay-Script"
+				bat 'nuget install resources/TerraTex-RL-RPG/packages.config -OutputDirectory resources/packages'
+				bat 'msbuild resources/TerraTex-RL-RPG/TerraTex-RL-RPG.csproj'
+				bat "SonarQube.Scanner.MSBuild.exe end"			
 			} else {
 				withSonarQubeEnv('TerraTex SonarQube') {
-					sh "${tool 'SonarQubeScanner'}/bin/sonar-scanner -Dsonar.projectVersion=${BUILD_DISPLAY_NAME}"
-				}
+					bat "SonarQube.Scanner.MSBuild.exe begin /key:terratex:gtmp-rl-rpg /s:${WORKSPACE}/SonarQube.Analysis.xml /version:${BUILD_DISPLAY_NAME}"
+					bat 'nuget install resources/TerraTex-RL-RPG/packages.config -OutputDirectory resources/packages'
+					bat 'msbuild resources/TerraTex-RL-RPG/TerraTex-RL-RPG.csproj'
+					bat "SonarQube.Scanner.MSBuild.exe end"	
+				}					
+				
 				timeout(time: 1, unit: 'HOURS') {
 					def qg = waitForQualityGate()
 					if (qg.status != 'OK') {
 						error "Pipeline aborted due to quality gate failure: ${qg.status}"
 					}
-				}		
+				}
 			}
 		}
 	}
-}
-
-node('windows') {	
-	deleteDir()
-	checkout scm
 	
 	stage('Build') {
-		if (env.BRANCH_NAME == 'master' || env.BRANCH_NAME == 'develop') {
+		if (env.BRANCH_NAME == 'master') {
 			bat 'cd resources/TerraTex-RL-RPG && npm install && npm run-script build'
 			bat 'nuget install resources/TerraTex-RL-RPG/packages.config -OutputDirectory resources/packages'
-			bat 'msbuild resources/TerraTex-RL-RPG/TerraTex-RL-RPG.csproj'
-			archiveArtifacts artifacts: '**/*.*'
+			bat 'msbuild resources/TerraTex-RL-RPG/TerraTex-RL-RPG.csproj'		
+		}
+		if (env.BRANCH_NAME == 'master' || env.BRANCH_NAME == 'develop') {
 			stash includes:'**/*.*', name: 'compiled'
 		}
 	}
 }
-
 node('master') {
 	stage('Deploy') {
 		if (env.BRANCH_NAME == 'master') {
