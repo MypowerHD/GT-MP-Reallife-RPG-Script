@@ -129,8 +129,8 @@ namespace TerraTex_RL_RPG.Lib.User.StartUp
 
         private void ApplyTableToPlayerUserInventory(Client player, DataRow data)
         {
-            player.setSyncedData("Money", (int) data["Money"]);
-            player.setSyncedData("BankAccount", (int) data["BankAccount"]);
+            player.setSyncedData("Money", (decimal) data["Money"]);
+            player.setSyncedData("BankAccount", (decimal) data["BankAccount"]);
             if (data["Phone"] != DBNull.Value)
             {
                 player.setSyncedData("Phone", (int) data["Phone"]);
