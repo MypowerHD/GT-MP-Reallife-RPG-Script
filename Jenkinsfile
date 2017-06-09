@@ -14,6 +14,13 @@ node('windows'){
 				bat 'nuget install resources/TerraTex-RL-RPG/packages.config -OutputDirectory resources/packages'
 				bat 'msbuild resources/TerraTex-RL-RPG/TerraTex-RL-RPG.csproj'
 				bat "SonarQube.Scanner.MSBuild.exe end"		
+				
+				timeout(time: 1, unit: 'HOURS') {
+					def qg = waitForQualityGate()
+					if (qg.status != 'OK') {
+						error "Pipeline aborted due to quality gate failure: ${qg.status}"
+					}
+				}
 			}
 		}
 	}
