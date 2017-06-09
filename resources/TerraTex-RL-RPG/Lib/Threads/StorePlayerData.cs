@@ -3,7 +3,7 @@ using System.Threading;
 using GrandTheftMultiplayer.Server.Elements;
 using MySql.Data.MySqlClient;
 
-namespace TerraTex_RL_RPG.Lib.User.Threads
+namespace TerraTex_RL_RPG.Lib.Threads
 {
     public class StorePlayerData
     {

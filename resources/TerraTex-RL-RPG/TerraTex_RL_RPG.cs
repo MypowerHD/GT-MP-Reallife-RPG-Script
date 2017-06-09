@@ -3,7 +3,7 @@ using System.Threading;
 using GrandTheftMultiplayer.Server.API;
 using GrandTheftMultiplayer.Server.Constant;
 using TerraTex_RL_RPG.Lib.Data;
-using TerraTex_RL_RPG.Lib.User.Threads;
+using TerraTex_RL_RPG.Lib.Threads;
 
 namespace TerraTex_RL_RPG
 {
@@ -12,8 +12,8 @@ namespace TerraTex_RL_RPG
         private static Database _mysql;
         private static Configs _configs;
         private static API _api;
-        private static StorePlayerData _storePlayerDataObject;
-        private static Thread _storePlayerDataThread;
+        private static StorePlayerData _storePlayerDataThread;
+        private static UpdatePlayerPlayTime _updatePlayerPlayTimeThread;
 
         public static Database Mysql => _mysql;
 
@@ -21,9 +21,8 @@ namespace TerraTex_RL_RPG
 
         public static API Api => _api;
 
-        public static StorePlayerData StorePlayerDataObject => _storePlayerDataObject;
-
-        public static Thread StorePlayerDataThread => _storePlayerDataThread;
+        public static StorePlayerData StorePlayerDataThread => _storePlayerDataThread;
+        public static UpdatePlayerPlayTime UpdatePlayerPlayTimeThread => _updatePlayerPlayTimeThread;
 
         public TTRPG()
         {
@@ -49,9 +48,14 @@ namespace TerraTex_RL_RPG
 
             _api.consoleOutput("Starting TerraTex_RL_RPG Gamemode");
 
-            _storePlayerDataObject = new StorePlayerData();
-            _storePlayerDataThread = _api.startThread(StorePlayerDataObject.DoWork);
+            // start Player Threads
+            _storePlayerDataThread = new StorePlayerData();
+            _api.startThread(_storePlayerDataThread.DoWork);
 
+            _updatePlayerPlayTimeThread = new UpdatePlayerPlayTime();
+            _api.startThread(_updatePlayerPlayTimeThread.DoWork);
+
+            _api.exported.scoreboard.addScoreboardColumn("PlayTime", "PlayTime", 40);
             _api.exported.scoreboard.addScoreboardColumn("Nachname", "Nachname", 250);
             _api.exported.scoreboard.addScoreboardColumn("Vorname", "Vorname", 250);
             _api.exported.scoreboard.addScoreboardColumn("ID", "ID", 40);
