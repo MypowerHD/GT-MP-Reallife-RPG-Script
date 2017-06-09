@@ -246,6 +246,10 @@
     <PreBuildEvent>npm install &amp;&amp; npm run-script build</PreBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
-    <PostBuildEvent>rmdir  /S /Q "C:\Users\gamer\Desktop\GT-MP-Server 0.1.508.640 HF1\resources/TerraTex-RL-RPG" &amp;&amp; xcopy /S /I /Y /E "$(ProjectDir)." "C:\Users\gamer\Desktop\GT-MP-Server 0.1.508.640 HF1\resources/TerraTex-RL-RPG"</PostBuildEvent>
+    <PostBuildEvent>IF EXIST "C:\Users\gamer\Desktop\GT-MP-Server 0.1.508.640 HF1" (
+rmdir  /S /Q "C:\Users\gamer\Desktop\GT-MP-Server 0.1.508.640 HF1\resources/TerraTex-RL-RPG" &amp;&amp; xcopy /S /I /Y /E "$(ProjectDir)." "C:\Users\gamer\Desktop\GT-MP-Server 0.1.508.640 HF1\resources/TerraTex-RL-RPG"
+)
+
+</PostBuildEvent>
   </PropertyGroup>
 </Project>
