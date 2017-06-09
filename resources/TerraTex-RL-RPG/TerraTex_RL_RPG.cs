@@ -28,28 +28,33 @@ namespace TerraTex_RL_RPG
         public TTRPG()
         {
             _api = API;
-            API.onResourceStart += TtStartUp;
+            API.onResourceStart += PrepareStartUp;
         }
 
-        public void TtStartUp()
+        public void PrepareStartUp()
+        {
+            TtStartUp();
+        }
+
+        public static void TtStartUp()
         {
             _configs = new Configs();
             _mysql = new Database();
 
             if (!Configs.ConfigExists("server"))
             {
-                Api.consoleOutput(LogCat.Fatal, "Configuration for server is missing in Configs directory.");
-                Api.stopResource(Api.getThisResource());
+                _api.consoleOutput(LogCat.Fatal, "Configuration for server is missing in Configs directory.");
+                _api.stopResource(_api.getThisResource());
             }
 
-            API.consoleOutput("Starting TerraTex_RL_RPG Gamemode");
+            _api.consoleOutput("Starting TerraTex_RL_RPG Gamemode");
 
             _storePlayerDataObject = new StorePlayerData();
-            _storePlayerDataThread = API.startThread(StorePlayerDataObject.DoWork);
+            _storePlayerDataThread = _api.startThread(StorePlayerDataObject.DoWork);
 
-            API.exported.scoreboard.addScoreboardColumn("Nachname", "Nachname", 250);
-            API.exported.scoreboard.addScoreboardColumn("Vorname", "Vorname", 250);
-            API.exported.scoreboard.addScoreboardColumn("ID", "ID", 40);
+            _api.exported.scoreboard.addScoreboardColumn("Nachname", "Nachname", 250);
+            _api.exported.scoreboard.addScoreboardColumn("Vorname", "Vorname", 250);
+            _api.exported.scoreboard.addScoreboardColumn("ID", "ID", 40);
         }
     }
 }

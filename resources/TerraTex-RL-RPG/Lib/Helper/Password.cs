@@ -15,7 +15,6 @@ namespace TerraTex_RL_RPG.Lib.Helper
         public static string GenerateSalt()
         {
             int length = 128;
-            string salt = "";
             const string digits = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz-+.:;?&$!_";
             Random randomizer = new Random();
 
