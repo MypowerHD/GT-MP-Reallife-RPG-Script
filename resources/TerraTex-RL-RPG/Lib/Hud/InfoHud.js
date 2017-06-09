@@ -9,11 +9,11 @@ const resY = API.getScreenResolution().Height - mapHeight - mapMarginBottom;
 let browser, lastMoney = -1, lastMoneyString = "";
 
 API.onResourceStart.connect(function() {
-    browser = API.createCefBrowser(1, 1, true);
+    /*browser = API.createCefBrowser(1, 1, true);
     API.setCefBrowserHeadless(browser, true);
     API.waitUntilCefBrowserInit(browser);
     API.loadPageCefBrowser(browser, 'UI/Workaround.html', false);
-    API.waitUntilCefBrowserLoaded(browser);
+    API.waitUntilCefBrowserLoaded(browser);*/
 });
 
 
@@ -29,11 +29,11 @@ API.onUpdate.connect(function() {
         let money = Math.round(API.getEntitySyncedData(API.getLocalPlayer(), "Money") * 100) / 100;
 
         if (money !== lastMoney) {
-            browser.eval(
+            /*browser.eval(
                 'money = ' + money + '; ' +
                 'moneyString = money.toLocaleString("de-DE",{style: "currency",currency: "EUR"});' +
                 'resourceCall("setMoneyString", moneyString);'
-            );
+            );*/
             lastMoney = money;
         }
     }
