@@ -10,10 +10,12 @@ node('windows'){
 				bat 'msbuild resources/TerraTex-RL-RPG/TerraTex-RL-RPG.csproj'
 				bat "SonarQube.Scanner.MSBuild.exe end"			
 			} else {
-				bat "SonarQube.Scanner.MSBuild.exe begin /key:terratex:gtmp-rl-rpg /s:${WORKSPACE}/SonarQube.Analysis.xml /version:${BUILD_DISPLAY_NAME}"
-				bat 'nuget install resources/TerraTex-RL-RPG/packages.config -OutputDirectory resources/packages'
-				bat 'msbuild resources/TerraTex-RL-RPG/TerraTex-RL-RPG.csproj'
-				bat "SonarQube.Scanner.MSBuild.exe end"		
+				withSonarQubeEnv('TerraTex SonarQube') {
+					bat "SonarQube.Scanner.MSBuild.exe begin /key:terratex:gtmp-rl-rpg /s:${WORKSPACE}/SonarQube.Analysis.xml /version:${BUILD_DISPLAY_NAME}"
+					bat 'nuget install resources/TerraTex-RL-RPG/packages.config -OutputDirectory resources/packages'
+					bat 'msbuild resources/TerraTex-RL-RPG/TerraTex-RL-RPG.csproj'
+					bat "SonarQube.Scanner.MSBuild.exe end"	
+				}					
 				
 				timeout(time: 1, unit: 'HOURS') {
 					def qg = waitForQualityGate()
