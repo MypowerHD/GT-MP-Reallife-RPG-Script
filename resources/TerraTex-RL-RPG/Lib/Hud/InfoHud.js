@@ -6,7 +6,13 @@ const mapHeight = API.getScreenResolution().Height / 5.71;
 const resX = mapMarginLeft + mapWidth + mapMarginLeft;
 const resY = API.getScreenResolution().Height - mapHeight - mapMarginBottom;
 
-let lastMoney = -1, lastMoneyString = "";
+let lastMoney = 0, lastMoneyString = "", money = 0;
+
+API.onServerEventTrigger.connect(function(eventName, args) {
+    if (eventName === "RefreshMoneyUI") {
+        money = args[0];
+    }
+});
 
 API.onUpdate.connect(function() {
 
@@ -15,18 +21,15 @@ API.onUpdate.connect(function() {
     const minutes = date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes();
 
     API.drawText(hours + ":" + minutes, resX + 10, resY + 133, 0.5, 255, 255, 255, 200, 0, 1, false, true, 0);
-
-    if (API.getEntitySyncedData(API.getLocalPlayer(), "Money") !== null) {
-        let money = API.getEntitySyncedData(API.getLocalPlayer(), "Money");
-
-        if (money !== lastMoney) {
-            lastMoneyString = money.toFixed(2).replace(/\./g, ",").replace(/./g, function (c, i, a) {
+    
+    if (money !== lastMoney) {
+        lastMoneyString = money.toFixed(2).replace(/\./g, ",").replace(/./g,
+            function(c, i, a) {
                 return i && c !== "," && ((a.length - i) % 3 === 0) ? '.' + c : c;
             });
-            lastMoneyString += " €";
-            lastMoney = money;
-        }
+        lastMoneyString += " €";
+        lastMoney = money;
     }
 
-    API.drawText(lastMoneyString, resX + 20, resY + 165, 0.5, 50, 255, 50, 200, 0, 1, false, true, 0);
+    API.drawText(lastMoneyString, resX + 30, resY + 165, 0.5, 50, 255, 50, 200, 0, 1, false, true, 0);
 });
