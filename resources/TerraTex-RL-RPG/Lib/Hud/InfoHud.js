@@ -21,7 +21,7 @@ API.onUpdate.connect(function() {
     const minutes = date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes();
 
     API.drawText(hours + ":" + minutes, resX + 10, resY + 133, 0.5, 255, 255, 255, 200, 0, 1, false, true, 0);
-    
+
     if (money !== lastMoney) {
         lastMoneyString = money.toFixed(2).replace(/\./g, ",").replace(/./g,
             function(c, i, a) {
