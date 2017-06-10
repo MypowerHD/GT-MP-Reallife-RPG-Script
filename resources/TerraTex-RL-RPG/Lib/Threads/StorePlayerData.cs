@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading;
 using GrandTheftMultiplayer.Server.Elements;
-using GrandTheftMultiplayer.Server.API;
 using MySql.Data.MySqlClient;
 
 namespace TerraTex_RL_RPG.Lib.Threads
@@ -61,9 +60,7 @@ namespace TerraTex_RL_RPG.Lib.Threads
                                             "BankAccount = @BankAccount, " +
                                             "Phone = @Phone " +
                                             "WHERE UserID = @UserID";
-
-
-
+            
             updateUserCommand.Parameters.AddWithValue("@Money", (float)(decimal)player.getSyncedData("Money"));
             updateUserCommand.Parameters.AddWithValue("@BankAccount", (float)(decimal)player.getSyncedData("BankAccount"));
 
@@ -76,7 +73,7 @@ namespace TerraTex_RL_RPG.Lib.Threads
                 updateUserCommand.Parameters.AddWithValue("@Phone", null);
             }
 
-        // general ID
+            // general ID
             updateUserCommand.Parameters.AddWithValue("@UserID", player.getSyncedData("ID"));
 
             updateUserCommand.ExecuteNonQuery();
