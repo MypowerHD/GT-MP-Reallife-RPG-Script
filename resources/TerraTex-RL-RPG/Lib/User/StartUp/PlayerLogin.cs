@@ -64,8 +64,7 @@ namespace TerraTex_RL_RPG.Lib.User.StartUp
                 }
                 else
                 {
-                    player.sendNotification("System-Error", "Das Passwort, dass du eingegeben hast, ist fehlerhaft.",
-                        false);
+                    player.sendNotification("System-Error", "Das Passwort, dass du eingegeben hast, ist fehlerhaft.", false);
                     player.triggerEvent("startLogin", player.name);
                 }
             }
