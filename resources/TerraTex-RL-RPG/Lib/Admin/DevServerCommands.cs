@@ -39,7 +39,7 @@ namespace TerraTex_RL_RPG.Lib.Admin
             }
         }
 
-        [Command("veh", Group = "dev", SensitiveInfo = true)]
+        [Command("veh", Group = "dev", SensitiveInfo = false)]
         public void VehCommand(Client player, string vehicleModelName)
         {
             if (DevServer.CheckDevCommandAccess(player) || AdminChecks.CheckAdminLvl(player, 3))

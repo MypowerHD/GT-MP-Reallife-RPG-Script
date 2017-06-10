@@ -85,6 +85,7 @@
     <Compile Include="Lib\Helper\Player.cs" />
     <Compile Include="Lib\Threads\UpdatePlayerPlayTime.cs" />
     <Compile Include="Lib\User\Management\MoneyManager.cs" />
+    <Compile Include="Lib\User\Management\RpLevelManager.cs" />
     <Compile Include="Lib\User\SpawnAndDeath\PlayerSpawnManager.cs" />
     <Compile Include="Lib\User\StartUp\PlayerDisconnection.cs" />
     <Compile Include="Lib\User\StartUp\PlayerLogin.cs" />
