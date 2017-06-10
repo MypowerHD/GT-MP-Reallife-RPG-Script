@@ -211,7 +211,6 @@
     <Content Include="UI\Register_Login_Profile\GetFingerprint.html" />
     <Content Include="UI\Register_Login_Profile\Login.html" />
     <Content Include="UI\Register_Login_Profile\Register.html" />
-    <Content Include="UI\Workaround.html" />
   </ItemGroup>
   <ItemGroup>
     <Analyzer Include="..\packages\SonarAnalyzer.CSharp.5.11.0.1761\analyzers\Google.Protobuf.dll" />
