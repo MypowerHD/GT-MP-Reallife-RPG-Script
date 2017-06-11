@@ -288,3 +288,9 @@ __pycache__/
 *.xsd.cs
 
 **/node_modules
+resources/TerraTex-RL-RPG/types-gt-mp/
+resources/LocalTelnetAdmin/types-gt-mp/
+resources/TerraTex-RL-RPG/Configs/database.xml
+
+Server
+resources/TerraTex-RL-RPG/Configs/server.xml
