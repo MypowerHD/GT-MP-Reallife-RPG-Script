@@ -36,3 +36,26 @@ CREATE TABLE user_inventory
 );
 CREATE UNIQUE INDEX user_inventory_Phone_uindex ON user_inventory (Phone);
 
+ALTER TABLE user_inventory ALTER COLUMN Phone SET DEFAULT NULL ;
+ALTER TABLE user_data ADD Skin VARCHAR(200) DEFAULT "0" NULL;
+
+ALTER TABLE user_inventory MODIFY Money DECIMAL(65,2) DEFAULT '0';
+ALTER TABLE user_inventory MODIFY BankAccount DECIMAL(65,2) DEFAULT '0';
+
+CREATE TABLE log_player_money
+(
+    ID INT PRIMARY KEY AUTO_INCREMENT,
+    UserID INT,
+    Typ VARCHAR(255),
+    Category VARCHAR(255),
+    Amount DECIMAL(65,2),
+    Reason TEXT,
+    AdditionalData TEXT,
+    Date TIMESTAMP DEFAULT current_timestamp(),
+    CONSTRAINT log_player_money_user_ID_fk FOREIGN KEY (UserID) REFERENCES user (ID) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+ALTER TABLE user_inventory ALTER COLUMN Money SET DEFAULT '2500.00';
+ALTER TABLE user_inventory ALTER COLUMN BankAccount SET DEFAULT '2500.00';
+ALTER TABLE user_data ADD RP INT DEFAULT 0 NULL;
+ALTER TABLE user_data ADD Level INT DEFAULT 0 NULL;

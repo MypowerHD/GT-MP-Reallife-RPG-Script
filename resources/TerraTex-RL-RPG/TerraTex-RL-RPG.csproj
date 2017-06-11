@@ -20,8 +20,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <CodeAnalysisRuleSet>
-    </CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet>TerraTex-RL-RPG.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -30,11 +29,10 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <CodeAnalysisRuleSet>
-    </CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet>TerraTex-RL-RPG.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup>
-    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+    <RunPostBuildEvent>Always</RunPostBuildEvent>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Google.Protobuf, Version=3.3.0.0, Culture=neutral, PublicKeyToken=a7d26565bac4d604, processorArchitecture=MSIL">
@@ -78,18 +76,29 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Lib\Admin\AdminChecks.cs" />
+    <Compile Include="Lib\Admin\DevServer.cs" />
+    <Compile Include="Lib\Admin\DevServerCommands.cs" />
     <Compile Include="Lib\Data\Configs.cs" />
     <Compile Include="Lib\Data\Database.cs" />
     <Compile Include="Lib\Helper\Password.cs" />
+    <Compile Include="Lib\Helper\Player.cs" />
+    <Compile Include="Lib\Threads\UpdatePlayerPlayTime.cs" />
+    <Compile Include="Lib\User\Management\MoneyManager.cs" />
+    <Compile Include="Lib\User\Management\RpLevelManager.cs" />
+    <Compile Include="Lib\User\SpawnAndDeath\PlayerSpawnManager.cs" />
+    <Compile Include="Lib\User\StartUp\PlayerDisconnection.cs" />
     <Compile Include="Lib\User\StartUp\PlayerLogin.cs" />
     <Compile Include="Lib\User\StartUp\PlayerRegister.cs" />
     <Compile Include="Lib\User\StartUp\PlayerConnection.cs" />
+    <Compile Include="Lib\Threads\StorePlayerData.cs" />
     <Compile Include="TerraTex_RL_RPG.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
     <None Include="package.json" />
+    <None Include="TerraTex-RL-RPG.ruleset" />
     <None Include="UI\custom\styles.scss" />
     <None Include="UI\general\Styles\bootstrap\bootstrap-grid.scss" />
     <None Include="UI\general\Styles\bootstrap\bootstrap-reboot.scss" />
@@ -179,9 +188,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Configs\database_example.xml" />
+    <Content Include="Configs\server_example.xml" />
     <Content Include="Gruntfile.js" />
-    <Content Include="Languages\de_client.xml" />
-    <Content Include="Languages\de_server.xml" />
+    <Content Include="Lib\Hud\InfoHud.js" />
     <Content Include="Lib\User\StartUp\PlayerConnection_Client.js" />
     <Content Include="Lib\User\StartUp\PlayerConnection_Login_Client.js" />
     <Content Include="Lib\User\StartUp\PlayerConnection_Register_Client.js" />
@@ -205,7 +214,11 @@
     <Content Include="UI\Register_Login_Profile\Login.html" />
     <Content Include="UI\Register_Login_Profile\Register.html" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Analyzer Include="..\packages\SonarAnalyzer.CSharp.5.11.0.1761\analyzers\Google.Protobuf.dll" />
+    <Analyzer Include="..\packages\SonarAnalyzer.CSharp.5.11.0.1761\analyzers\SonarAnalyzer.CSharp.dll" />
+    <Analyzer Include="..\packages\SonarAnalyzer.CSharp.5.11.0.1761\analyzers\SonarAnalyzer.dll" />
+  </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="types-gt-mp\Declarations.d.ts" />
     <TypeScriptCompile Include="types-gt-mp\GrandTheftMultiplayer.Client.GUI.d.ts" />
@@ -240,6 +253,11 @@
     <PreBuildEvent>npm install &amp;&amp; npm run-script build</PreBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
-    <PostBuildEvent>rmdir  /S /Q "C:\Users\gamer\Desktop\GT-MP-Server 0.1.508.640 HF1\resources/TerraTex-RL-RPG" &amp;&amp; xcopy /S /I /Y /E "$(ProjectDir)." "C:\Users\gamer\Desktop\GT-MP-Server 0.1.508.640 HF1\resources/TerraTex-RL-RPG"</PostBuildEvent>
+    <PostBuildEvent>IF EXIST $(ProjectDir)..\..\Server (
+rmdir  /S /Q "$(ProjectDir)..\..\Server\resources/TerraTex-RL-RPG" 
+xcopy /S /I /Y /E "$(ProjectDir)." "$(ProjectDir)..\..\Server\resources/TerraTex-RL-RPG"
+)
+
+</PostBuildEvent>
   </PropertyGroup>
 </Project>

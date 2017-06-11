@@ -33,8 +33,8 @@ namespace TerraTex_RL_RPG.Lib.User.StartUp
                     "INSERT INTO user (Nickname, Forename, Lastname, Password, Gender, Birthday, History, Last_Fingerprint, EMail, Salt, UUID) " +
                     "VALUES (@nickname, @forename, @lastname, @password, @gender, @birthday, @history, @last_fingerprint, @email, @salt, uuid())";
 
-                string salt = Password.GenerateSalt();
-                password = Password.Hash(password, salt);
+                string salt = PasswordHelper.GenerateSalt();
+                password = PasswordHelper.Hash(password, salt);
 
                 createUserCommand.Parameters.AddWithValue("@nickname", player.name);
                 createUserCommand.Parameters.AddWithValue("@forename", forename);

@@ -3,6 +3,7 @@ let nickname;
 
 API.onServerEventTrigger.connect(function(eventName, args) {
     if (eventName === "startLogin") {
+        API.setCanOpenChat(false);
         const resolution = API.getScreenResolution();
         const width = Math.round(resolution.Width < 690 ? resolution.Width : 690);
         const height = Math.round(resolution.Height < 390 ? resolution.Height : 390);
@@ -28,5 +29,7 @@ function sendMeNickname() {
 
 function sendLogin(regData) {
     API.destroyCefBrowser(browser);
+    API.showCursor(false);
+    API.setCanOpenChat(true);
     API.triggerServerEvent("onClientStartLogin", regData);
 }

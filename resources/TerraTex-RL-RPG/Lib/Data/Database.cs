@@ -29,10 +29,9 @@ namespace TerraTex_RL_RPG.Lib.Data
             {
                 XmlDocument databaseConfig = TTRPG.Configs.GetConfig("database");
                 string host = databaseConfig.GetElementsByTagName("host")[0].InnerText;
-                string user = databaseConfig.GetElementsByTagName("user")[0].InnerText; ;
-                string password = databaseConfig.GetElementsByTagName("password")[0].InnerText; ;
+                string user = databaseConfig.GetElementsByTagName("user")[0].InnerText;
+                string password = databaseConfig.GetElementsByTagName("password")[0].InnerText;
                 string database = databaseConfig.GetElementsByTagName("database")[0].InnerText;
-                ;
 
                 string myConnectionString = "server=" + host + ";uid=" + user + ";" + "pwd=" + password + ";database=" +
                                             database + ";Allow Zero Datetime=true;";
