@@ -95,6 +95,8 @@ namespace TerraTex_RL_RPG.Lib.Threads
 
             // general ID
             updateUserCommand.Parameters.AddWithValue("@UserID", player.getSyncedData("ID"));
+
+            updateUserCommand.ExecuteNonQuery();
         }
 
         public void StopThread()
