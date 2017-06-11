@@ -1,6 +1,9 @@
 ﻿using System.Collections.Generic;
+using System.IO;
+using System.Text;
 using System.Threading;
 using GrandTheftMultiplayer.Server.Elements;
+using GrandTheftMultiplayer.Shared;
 using MySql.Data.MySqlClient;
 
 namespace TerraTex_RL_RPG.Lib.Threads
@@ -19,7 +22,7 @@ namespace TerraTex_RL_RPG.Lib.Threads
 
                 foreach (Client player in players)
                 {
-                    if (player.hasSyncedData("loggedin") && (bool) player.getSyncedData("loggedin"))
+                    if (player.hasSyncedData("loggedin") && (bool)player.getSyncedData("loggedin"))
                     {
                         StartToStorePlayerData(player);
                     }
@@ -37,46 +40,61 @@ namespace TerraTex_RL_RPG.Lib.Threads
 
         private void StoreTableUserData(Client player)
         {
-            MySqlCommand updateUserCommand = TTRPG.Mysql.Conn.CreateCommand();
-            updateUserCommand.CommandText = "UPDATE user_data SET " +
-                                            "PlayTime = @PlayTime, " +
-                                            "Skin = @Skin " +
-                                            "WHERE UserID = @UserID";
+            string[] fields = { "PlayTime", "RP", "Level", "Skin" };
+            Dictionary<string, dynamic> valueReplacements = new Dictionary<string, dynamic>();
+            BuildAndExecuteTableQuery(player, "user_data", fields, valueReplacements);
 
-            updateUserCommand.Parameters.AddWithValue("@PlayTime", player.getSyncedData("PlayTime"));
-            updateUserCommand.Parameters.AddWithValue("@Skin", player.getSyncedData("Skin"));
-
-            // general ID
-            updateUserCommand.Parameters.AddWithValue("@UserID", player.getSyncedData("ID"));
-
-            updateUserCommand.ExecuteNonQuery();
         }
 
         private void StoreTableUserInventory(Client player)
         {
-            MySqlCommand updateUserCommand = TTRPG.Mysql.Conn.CreateCommand();
-            updateUserCommand.CommandText = "UPDATE user_inventory SET " +
-                                            "Money = @Money, " +
-                                            "BankAccount = @BankAccount, " +
-                                            "Phone = @Phone " +
-                                            "WHERE UserID = @UserID";
-            
-            updateUserCommand.Parameters.AddWithValue("@Money", (float)(decimal)player.getSyncedData("Money"));
-            updateUserCommand.Parameters.AddWithValue("@BankAccount", (float)(decimal)player.getSyncedData("BankAccount"));
+            string[] fields = { "Money", "BankAccount", "Phone" };
+            Dictionary<string, dynamic> valueReplacements = new Dictionary<string, dynamic>();
+
 
             if (player.getSyncedData("Phone") != -1)
             {
-                updateUserCommand.Parameters.AddWithValue("@Phone", player.getSyncedData("Phone"));
+                valueReplacements.Add("Phone", player.getSyncedData("Phone"));
             }
             else
             {
-                updateUserCommand.Parameters.AddWithValue("@Phone", null);
+                valueReplacements.Add("Phone", null);
             }
+
+            BuildAndExecuteTableQuery(player, "user_inventory", fields, valueReplacements);
+        }
+
+        private void BuildAndExecuteTableQuery(Client player, string table, string[] fields, Dictionary<string, dynamic> valueReplacements)
+        {
+            MySqlCommand updateUserCommand = TTRPG.Mysql.Conn.CreateCommand();
+
+            StringBuilder cmd = new StringBuilder();
+            cmd.Append("UPDATE " + table + " SET ");
+
+            for (int i = 0; i < fields.Length; i++)
+            {
+                cmd.Append(fields[i] + " = @" + fields[i]);
+                if (i < fields.Length - 1)
+                {
+                    cmd.Append(",");
+                }
+
+                if (valueReplacements.ContainsKey(fields[i]))
+                {
+                    updateUserCommand.Parameters.AddWithValue("@" + fields[i], valueReplacements.Get(fields[i]));
+                }
+                else
+                {
+                    updateUserCommand.Parameters.AddWithValue("@" + fields[i], player.getSyncedData(fields[i]));
+                }
+
+            }
+
+            cmd.Append("WHERE UserID = @UserID");
+            updateUserCommand.CommandText = cmd.ToString();
 
             // general ID
             updateUserCommand.Parameters.AddWithValue("@UserID", player.getSyncedData("ID"));
-
-            updateUserCommand.ExecuteNonQuery();
         }
 
         public void StopThread()

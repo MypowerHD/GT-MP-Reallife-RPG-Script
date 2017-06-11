@@ -6,6 +6,8 @@ using GrandTheftMultiplayer.Shared;
 using MySql.Data.MySqlClient;
 using TerraTex_RL_RPG.Lib.Admin;
 using TerraTex_RL_RPG.Lib.Helper;
+using TerraTex_RL_RPG.Lib.Threads;
+using TerraTex_RL_RPG.Lib.User.Management;
 using TerraTex_RL_RPG.Lib.User.SpawnAndDeath;
 
 namespace TerraTex_RL_RPG.Lib.User.StartUp
@@ -60,6 +62,11 @@ namespace TerraTex_RL_RPG.Lib.User.StartUp
 
                         TTRPG.Api.exported.scoreboard.setPlayerScoreboardData(player, "ID", result.Rows[0]["ID"].ToString());
                         TTRPG.Api.exported.scoreboard.setPlayerScoreboardData(player, "Nickname", player.name);
+
+                        MoneyManager.RefreshPlayerMoneyDisplay(player);
+                        RpLevelManager.CalculateAndSetLevelOfPlayer(player);
+                        RpLevelManager.RefreshPlayerRpAndLevelDisplay(player);
+                        UpdatePlayerPlayTime.UpdatePlayerPlayTimeDisplay(player);
                     }
                 }
                 else
@@ -125,6 +132,7 @@ namespace TerraTex_RL_RPG.Lib.User.StartUp
         {
             player.setSyncedData("PlayTime", (int) data["PlayTime"]);
             player.setSyncedData("Skin", (string) data["Skin"]);
+            player.setSyncedData("RP", (int) data["RP"]);
         }
 
         private void ApplyTableToPlayerUserInventory(Client player, DataRow data)

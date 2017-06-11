@@ -4,6 +4,7 @@ using System.ServiceModel.Security.Tokens;
 using System.Text;
 using System.Threading;
 using GrandTheftMultiplayer.Server.Elements;
+using TerraTex_RL_RPG.Lib.User.Management;
 
 namespace TerraTex_RL_RPG.Lib.Threads
 {
@@ -24,23 +25,31 @@ namespace TerraTex_RL_RPG.Lib.Threads
                     if (player.hasSyncedData("loggedin") && (bool)player.getSyncedData("loggedin"))
                     {
                         player.setSyncedData("PlayTime", player.getSyncedData("PlayTime") + 1);
-                        int playTime = player.getSyncedData("PlayTime");
 
-                        // format PlayTime for ScoreBoard
-                        StringBuilder sbd = new StringBuilder();
-
-                        int hours = playTime / 60;
-                        sbd.Append(hours);
-                        sbd.Append(" | ");
-                        int minutes = playTime - hours * 60;
-                        sbd.Append(minutes.ToString("D2"));
-
-                        TTRPG.Api.exported.scoreboard.setPlayerScoreboardData(player, "PlayTime", sbd.ToString());
+                        UpdatePlayerPlayTimeDisplay(player);
+                        // Add one RP for playtime
+                        RpLevelManager.AddRpToPlayer(player, 1, false);
                     }
                 }
 
                 Thread.Sleep(60000);
             }
+        }
+
+        public static void UpdatePlayerPlayTimeDisplay(Client player)
+        {
+            int playTime = player.getSyncedData("PlayTime");
+
+            // format PlayTime for ScoreBoard
+            StringBuilder sbd = new StringBuilder();
+
+            int hours = playTime / 60;
+            sbd.Append(hours);
+            sbd.Append(" | ");
+            int minutes = playTime - hours * 60;
+            sbd.Append(minutes.ToString("D2"));
+
+            TTRPG.Api.exported.scoreboard.setPlayerScoreboardData(player, "PlayTime", sbd.ToString());
         }
 
         public void StopThread()

@@ -84,6 +84,8 @@
     <Compile Include="Lib\Helper\Password.cs" />
     <Compile Include="Lib\Helper\Player.cs" />
     <Compile Include="Lib\Threads\UpdatePlayerPlayTime.cs" />
+    <Compile Include="Lib\User\Management\MoneyManager.cs" />
+    <Compile Include="Lib\User\Management\RpLevelManager.cs" />
     <Compile Include="Lib\User\SpawnAndDeath\PlayerSpawnManager.cs" />
     <Compile Include="Lib\User\StartUp\PlayerDisconnection.cs" />
     <Compile Include="Lib\User\StartUp\PlayerLogin.cs" />
@@ -211,7 +213,6 @@
     <Content Include="UI\Register_Login_Profile\GetFingerprint.html" />
     <Content Include="UI\Register_Login_Profile\Login.html" />
     <Content Include="UI\Register_Login_Profile\Register.html" />
-    <Content Include="UI\Workaround.html" />
   </ItemGroup>
   <ItemGroup>
     <Analyzer Include="..\packages\SonarAnalyzer.CSharp.5.11.0.1761\analyzers\Google.Protobuf.dll" />
