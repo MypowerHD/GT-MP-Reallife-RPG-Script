@@ -9,7 +9,7 @@ node('windows'){
 				bat 'nuget install resources/TerraTex-RL-RPG/packages.config -OutputDirectory resources/packages'
 				bat 'msbuild resources/TerraTex-RL-RPG/TerraTex-RL-RPG.csproj'
 				bat "SonarQube.Scanner.MSBuild.exe end"			
-			} else {
+			} else if (env.BRANCH_NAME == 'develop') {
 				withSonarQubeEnv('TerraTex SonarQube') {
 					bat "SonarQube.Scanner.MSBuild.exe begin /key:terratex:gtmp-rl-rpg /s:${WORKSPACE}/SonarQube.Analysis.xml /version:${BUILD_DISPLAY_NAME}"
 					bat 'nuget install resources/TerraTex-RL-RPG/packages.config -OutputDirectory resources/packages'
