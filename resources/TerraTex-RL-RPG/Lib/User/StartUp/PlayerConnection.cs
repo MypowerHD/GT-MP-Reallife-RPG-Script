@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text.RegularExpressions;
 using GrandTheftMultiplayer.Server.API;
 using GrandTheftMultiplayer.Server.Elements;
 using GrandTheftMultiplayer.Shared.Math;
@@ -12,7 +13,19 @@ namespace TerraTex_RL_RPG.Lib.User.StartUp
         {
             API.onClientEventTrigger += OnClientEvent;
             API.onPlayerConnected += OnPlayerConnectedEventHandler;
+            API.onPlayerBeginConnect += OnPlayerBeginConnectHandler;
         }
+
+        private void OnPlayerBeginConnectHandler(Client player, CancelEventArgs e)
+        {
+            Regex nickTest = new Regex("^[A-Za-z0-9-ÄÖÜßäüö]*$");
+            if (nickTest.IsMatch(player.name))
+            {
+                e.Cancel = true;
+                e.Reason = "Dein Nickname enthält nicht erlaubte Symbole!";
+            }
+        }
+
 
         public void OnPlayerConnectedEventHandler(Client player)
         {
