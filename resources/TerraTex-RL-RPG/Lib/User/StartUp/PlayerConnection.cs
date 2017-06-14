@@ -13,22 +13,16 @@ namespace TerraTex_RL_RPG.Lib.User.StartUp
         {
             API.onClientEventTrigger += OnClientEvent;
             API.onPlayerConnected += OnPlayerConnectedEventHandler;
-            API.onPlayerBeginConnect += OnPlayerBeginConnectHandler;
         }
 
-        private void OnPlayerBeginConnectHandler(Client player, CancelEventArgs e)
+        public void OnPlayerConnectedEventHandler(Client player)
         {
             Regex nickTest = new Regex("^[A-Za-z0-9-_ÄÖÜßäüö]*$");
             if (!nickTest.IsMatch(player.name))
             {
-                e.Cancel = true;
-                e.Reason = "Dein Nickname enthält nicht erlaubte Symbole!";
+                player.kick("Dein Nickname enthält nicht erlaubte Symbole!");
             }
-        }
-
-
-        public void OnPlayerConnectedEventHandler(Client player)
-        {
+            
             player.nametagVisible = false;
             player.invincible = true;
             player.position = new Vector3(0,0,200);
