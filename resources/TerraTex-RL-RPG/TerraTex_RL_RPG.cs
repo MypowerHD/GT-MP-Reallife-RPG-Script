@@ -4,6 +4,7 @@ using GrandTheftMultiplayer.Server.API;
 using GrandTheftMultiplayer.Server.Constant;
 using TerraTex_RL_RPG.Lib.Data;
 using TerraTex_RL_RPG.Lib.Threads;
+using TerraTex_RL_RPG.Lib.User.Management;
 
 namespace TerraTex_RL_RPG
 {
@@ -39,6 +40,7 @@ namespace TerraTex_RL_RPG
         {
             _configs = new Configs();
             _mysql = new Database();
+            ScoreboardManager.InitScoreboard();
 
             if (!Configs.ConfigExists("server"))
             {

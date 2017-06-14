@@ -23,16 +23,38 @@ namespace TerraTex_RL_RPG.Lib.User.SpawnAndDeath
         public static void SetPlayerNameTag(Client player)
         {
             int id = player.getSyncedData("ID");
+            int adminlvl = player.getSyncedData("Admin");
             string nickname = player.getSyncedData("Nickname");
             string forename = player.getSyncedData("Forename");
             string lastname = player.getSyncedData("Lastname");
+
+            //Set postfix
+            string prefixTag = "";
+            if (adminlvl >= 1 && adminlvl <= 4)
+            {
+                if(adminlvl == 1)
+                {
+                    prefixTag = "[Sup]";
+                } else if (adminlvl == 2) {
+                    prefixTag = "[Mod]";
+                } else if (adminlvl == 3) {
+                    prefixTag = "[Admin]";
+                } else if (adminlvl == 4) {
+                    prefixTag = "[Owner]";
+                }
+            }
 
             // Additionally set PlayerName in Scoreboard
             TTRPG.Api.exported.scoreboard.setPlayerScoreboardData(player, "Vorname", forename);
             TTRPG.Api.exported.scoreboard.setPlayerScoreboardData(player, "Nachname", lastname);
 
             // generate Nametag
-            string nameTag = "[" + id + "]" + nickname;
+            string nameTag = "";
+            if (string.IsNullOrEmpty(prefixTag)) {
+                nameTag = "[" + id + "]" + nickname;
+            } else  {
+                nameTag = prefixTag + "[" + id + "]" + nickname;
+            }
 
             forename = nameTag.Length <= 20 ? forename : (forename[0] + ".");
             nameTag += " (" + forename + " ";
