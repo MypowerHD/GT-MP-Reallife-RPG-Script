@@ -90,11 +90,13 @@ namespace TerraTex_RL_RPG.Lib.Threads
 
             }
 
-            cmd.Append("WHERE UserID = @UserID");
+            cmd.Append(" WHERE UserID = @UserID");
             updateUserCommand.CommandText = cmd.ToString();
 
             // general ID
             updateUserCommand.Parameters.AddWithValue("@UserID", player.getSyncedData("ID"));
+
+            updateUserCommand.ExecuteNonQuery();
         }
 
         public void StopThread()

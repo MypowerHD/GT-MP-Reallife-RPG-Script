@@ -12,10 +12,14 @@ namespace TerraTex_RL_RPG.Lib.User.StartUp
 
         public void OnPlayerDisconnectedEventHandler(Client player, string reason)
         {
-            player.setSyncedData("loggedin", false);
-            TTRPG.StorePlayerDataThread.StartToStorePlayerData(player);
+            if (player.hasSyncedData("loggedin") && player.getSyncedData("loggedin"))
+            {
+                player.setSyncedData("loggedin", false);
+                TTRPG.StorePlayerDataThread.StartToStorePlayerData(player);
 
-            API.consoleOutput("Account " + player.name + "(" + player.getSyncedData("ID") + ") left the server.");
+                API.consoleOutput("Account " + player.name + "(" + player.getSyncedData("ID") + ") left the server: " +
+                                  reason);
+            }
         }
     }
 }
