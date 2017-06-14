@@ -22,7 +22,12 @@ namespace TerraTex_RL_RPG.Lib.User.StartUp
             {
                 player.kick("Dein Nickname enthält nicht erlaubte Symbole!");
             }
-            
+
+            if (!player.isCEFenabled)
+            {
+                player.kick("Dieser Server erfordert, das CEF aktiviert ist!");
+            }
+
             player.nametagVisible = false;
             player.invincible = true;
             player.position = new Vector3(0,0,200);
