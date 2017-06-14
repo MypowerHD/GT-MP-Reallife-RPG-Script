@@ -55,6 +55,22 @@ namespace TerraTex_RL_RPG.Lib.Data
             }
         }
 
-        public MySqlConnection Conn => _conn;
+        public MySqlConnection Conn
+        {
+            get
+            {
+                if (_conn.State.ToString() == "open")
+                {
+                    return _conn;
+                }
+                else
+                {
+                    _conn.Open();
+                    TTRPG.Api.consoleOutput(LogCat.Info, "Database Connection recreated.");
+
+                    return _conn;
+                }
+            }
+        }
     }
 }

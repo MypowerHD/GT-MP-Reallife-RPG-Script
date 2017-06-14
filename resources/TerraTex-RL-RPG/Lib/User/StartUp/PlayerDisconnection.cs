@@ -12,7 +12,7 @@ namespace TerraTex_RL_RPG.Lib.User.StartUp
 
         public void OnPlayerDisconnectedEventHandler(Client player, string reason)
         {
-            if (player.getSyncedData("loggedin"))
+            if (player.hasSyncedData("loggedin") && player.getSyncedData("loggedin"))
             {
                 player.setSyncedData("loggedin", false);
                 TTRPG.StorePlayerDataThread.StartToStorePlayerData(player);
