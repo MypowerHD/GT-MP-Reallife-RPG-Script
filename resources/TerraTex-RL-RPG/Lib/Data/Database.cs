@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Data;
 using System.Data.Common;
 using System.Xml;
 using GrandTheftMultiplayer.Server.Constant;
@@ -55,6 +56,22 @@ namespace TerraTex_RL_RPG.Lib.Data
             }
         }
 
-        public MySqlConnection Conn => _conn;
+        public MySqlConnection Conn
+        {
+            get
+            {
+                if (_conn.State == ConnectionState.Open)
+                {
+                    return _conn;
+                }
+                else
+                {
+                    _conn.Open();
+                    TTRPG.Api.consoleOutput(LogCat.Info, "Database Connection recreated.");
+
+                    return _conn;
+                }
+            }
+        }
     }
 }
