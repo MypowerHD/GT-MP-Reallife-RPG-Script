@@ -12,6 +12,16 @@ namespace TerraTex_RL_RPG.Lib.User.StartUp
         {
             API.onClientEventTrigger += OnClientEvent;
             API.onPlayerConnected += OnPlayerConnectedEventHandler;
+            API.onPlayerBeginConnect += OnPlayerBeginConnectHandler;
+        }
+
+        private void OnPlayerBeginConnectHandler(Client player, CancelEventArgs e)
+        {
+            if (!player.isCEFenabled)
+            {
+                e.Cancel = true;
+                e.Reason = "Dieser Server erfordert, das CEF aktiviert ist!";
+            }
         }
 
         public void OnPlayerConnectedEventHandler(Client player)
