@@ -10,6 +10,7 @@ namespace TerraTex_RL_RPG.Lib.Data
     public class Database
     {
         private MySqlConnection _conn;
+        public MySqlConnection Conn;
 
         public Database()
         {
@@ -39,6 +40,7 @@ namespace TerraTex_RL_RPG.Lib.Data
                 {
                     _conn = new MySqlConnection(myConnectionString);
                     _conn.Open();
+                    Conn = _conn;
 
                     TTRPG.Api.consoleOutput(LogCat.Info, "Database Connection created.");
                 }
@@ -54,7 +56,7 @@ namespace TerraTex_RL_RPG.Lib.Data
                 TTRPG.Api.stopResource(TTRPG.Api.getThisResource());
             }
         }
-
+      
         public MySqlConnection Conn
         {
             get
