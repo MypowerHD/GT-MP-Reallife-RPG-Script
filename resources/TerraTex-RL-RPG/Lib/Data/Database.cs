@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Data;
 using System.Data.Common;
 using System.Xml;
 using GrandTheftMultiplayer.Server.Constant;
@@ -59,7 +60,7 @@ namespace TerraTex_RL_RPG.Lib.Data
         {
             get
             {
-                if (_conn.State.ToString() == "open")
+                if (_conn.State == ConnectionState.Open)
                 {
                     return _conn;
                 }
