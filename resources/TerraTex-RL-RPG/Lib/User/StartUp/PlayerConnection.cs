@@ -18,8 +18,8 @@ namespace TerraTex_RL_RPG.Lib.User.StartUp
 
         private void OnPlayerBeginConnectHandler(Client player, CancelEventArgs e)
         {
-            Regex nickTest = new Regex("^[A-Za-z0-9-ÄÖÜßäüö]*$");
-            if (nickTest.IsMatch(player.name))
+            Regex nickTest = new Regex("^[A-Za-z0-9-_ÄÖÜßäüö]*$");
+            if (!nickTest.IsMatch(player.name))
             {
                 e.Cancel = true;
                 e.Reason = "Dein Nickname enthält nicht erlaubte Symbole!";
