@@ -1,4 +1,4 @@
-node('windows'){
+node('master'){
 	deleteDir()
 	checkout scm
 	
@@ -37,8 +37,7 @@ node('windows'){
 			stash includes:'**/*.*', name: 'compiled'
 		}
 	}
-}
-node('master') {
+	
 	stage('Deploy') {
 		if (env.BRANCH_NAME == 'dev') {		
 			unstash 'compiled'
@@ -51,5 +50,4 @@ node('master') {
 			sh 'ssh localhost "xcopy \\"L:/03_shared_packages\\" \\"L:/GT-MP-Server/resources\\" /E /Y /I"'
 		}
 	}
-
 }
