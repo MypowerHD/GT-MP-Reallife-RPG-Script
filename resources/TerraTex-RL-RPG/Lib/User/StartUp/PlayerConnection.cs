@@ -13,16 +13,6 @@ namespace TerraTex_RL_RPG.Lib.User.StartUp
         {
             API.onClientEventTrigger += OnClientEvent;
             API.onPlayerConnected += OnPlayerConnectedEventHandler;
-            API.onPlayerBeginConnect += OnPlayerBeginConnectHandler;
-        }
-
-        private void OnPlayerBeginConnectHandler(Client player, CancelEventArgs e)
-        {
-            if (!player.isCEFenabled)
-            {
-                e.Cancel = true;
-                e.Reason = "Dieser Server erfordert, das CEF aktiviert ist!";
-            }
         }
 
         public void OnPlayerConnectedEventHandler(Client player)
@@ -32,7 +22,12 @@ namespace TerraTex_RL_RPG.Lib.User.StartUp
             {
                 player.kick("Dein Nickname enthält nicht erlaubte Symbole!");
             }
-            
+
+            if (!player.isCEFenabled)
+            {
+                player.kick("Dieser Server erfordert, das CEF aktiviert ist!");
+            }
+
             player.nametagVisible = false;
             player.invincible = true;
             player.position = new Vector3(0,0,200);
