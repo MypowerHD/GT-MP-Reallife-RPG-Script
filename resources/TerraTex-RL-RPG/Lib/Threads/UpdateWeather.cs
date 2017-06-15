@@ -35,6 +35,26 @@ namespace TerraTex_RL_RPG.Lib.Threads
                 });
 
                 int _weatherID = _loadedDie.NextValue();
+                string weather = "";
+                switch (_weatherID)
+                {
+                    case 0: weather = "Extra Sunny"; break;
+                    case 1: weather = "Clear"; break;
+                    case 2: weather = "Clouds"; break;
+                    case 3: weather = "Smog"; break;
+                    case 4: weather = "Foggy"; break;
+                    case 5: weather = "Overcast"; break;
+                    case 6: weather = "Rain"; break;
+                    case 7: weather = "Thunder"; break;
+                    case 8: weather = "Light rain"; break;
+                    case 9: weather = "Smoggy light rain"; break;
+                    case 10: weather = "Very light Snow"; break;
+                    case 11: weather = "Windy light Snow"; break;
+                    case 12: weather = "Light snow"; break;
+                    case 13: weather = "Unknown (No Effect)"; break;
+                }
+
+                TTRPG.Api.consoleOutput("[DynamicWeather] The Weather has changed to " + weather);
                 TTRPG.Api.setWeather(_weatherID);
 
                 Thread.Sleep(1200000);
