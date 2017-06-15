@@ -21,17 +21,17 @@ namespace TerraTex_RL_RPG.Lib.Threads
                     155, //Extra Sunny
                     155, //Clear
                     155, //Clouds
-                    85, //Smog
-                    85, //Foggy
-                    85, //Overcast
-                    85, //Rain
-                    85, //Thunder
-                    85, //Light rain
-                    85, //Smoggy light rain
-                    85, //Very light Snow
-                    85, //Windy light Snow
-                    85, //Light snow
-                    85 //Unknown (No Effect)
+                    45, //Smog
+                    45, //Foggy
+                    45, //Overcast
+                    45, //Rain
+                    45, //Thunder
+                    45, //Light rain
+                    45, //Smoggy light rain
+                    45, //Very light Snow
+                    45, //Windy light Snow
+                    45, //Light snow
+                    45 //Unknown (No Effect)
                 });
 
                 int _weatherID = _loadedDie.NextValue();
@@ -60,6 +60,11 @@ namespace TerraTex_RL_RPG.Lib.Threads
                 Thread.Sleep(1200000);
             }
 
+        }
+
+        public void StopThread()
+        {
+            _interuped = true;
         }
     }
 }
