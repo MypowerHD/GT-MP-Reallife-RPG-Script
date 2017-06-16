@@ -23,18 +23,18 @@ namespace TerraTex_RL_RPG.Lib.Helper
             this.even = true;
         }
 
-        Random random = new Random();
+        readonly Random random = new Random();
 
-        List<long> prob;
-        List<int> alias;
-        long total;
-        int n;
-        bool even;
+        readonly List<long> prob;
+        readonly List<int> alias;
+        readonly long total;
+        readonly int n;
+        readonly bool even;
 
         public LoadedDie(IEnumerable<int> probs)
         {
             // Raise an error if nil
-            if (probs == null) throw new ArgumentNullException("probs");
+            if (probs == null) throw new ArgumentNullException("probs are null");
             this.prob = new List<long>();
             this.alias = new List<int>();
             this.total = 0;
