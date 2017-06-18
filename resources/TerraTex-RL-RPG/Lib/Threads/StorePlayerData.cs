@@ -22,7 +22,7 @@ namespace TerraTex_RL_RPG.Lib.Threads
 
                 foreach (Client player in players)
                 {
-                    if (player.hasSyncedData("loggedin") && (bool) player.getSyncedData("loggedin"))
+                    if (player.hasSyncedData("loggedin") && (bool)player.getSyncedData("loggedin"))
                     {
                         StartToStorePlayerData(player);
                     }
@@ -40,7 +40,7 @@ namespace TerraTex_RL_RPG.Lib.Threads
 
         private void StoreTableUserData(Client player)
         {
-            string[] fields = {"PlayTime", "RP", "Level", "Skin"};
+            string[] fields = { "PlayTime", "RP", "Level", "Skin" };
             Dictionary<string, dynamic> valueReplacements = new Dictionary<string, dynamic>();
             BuildAndExecuteTableQuery(player, "user_data", fields, valueReplacements);
 
@@ -48,10 +48,10 @@ namespace TerraTex_RL_RPG.Lib.Threads
 
         private void StoreTableUserInventory(Client player)
         {
-            string[] fields = {"Money", "BankAccount", "Phone"};
+            string[] fields = { "Money", "BankAccount", "Phone" };
             Dictionary<string, dynamic> valueReplacements = new Dictionary<string, dynamic>();
 
-            
+
             if (player.getSyncedData("Phone") != -1)
             {
                 valueReplacements.Add("Phone", player.getSyncedData("Phone"));
