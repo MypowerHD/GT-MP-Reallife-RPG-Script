@@ -12,13 +12,65 @@ namespace TerraTex_RL_RPG.Lib.Helper.Weather
         public int weatherID = 0;
         public string weatherName = "Not Set ATM";
 
-        public void Boot()
+        private int _sunny;
+        private int _clear;
+        private int _clouds;
+        private int _smog;
+        private int _foggy;
+        private int _overcast;
+        private int _rain;
+        private int _thunder;
+        private int _lightrain;
+        private int _slrain;
+        private int _vlsnow;
+        private int _wlsnow;
+        private int _lightsnow;
+        private int _unknown;
+
+        public void Boot(int useconfig, int usedatetime)
         {
+
+            if (useconfig == 0)
+            {
+                if(usedatetime == 1)
+                {
+                    generateWeathernBasedonDateTime();
+                }
+                else
+                {
+                    generateWeatherBasedonConfigVars();
+                }
+            }
+            else
+            {
+                if (usedatetime == 1)
+                {
+                    generateWeathernBasedonDateTime();
+                }
+                else
+                {
+                    _sunny = 155; //Extra Sunny
+                    _clear = 155; //Clear
+                    _clouds = 155; //Clouds
+                    _smog = 45; //Smog
+                    _foggy = 45; //Foggy
+                    _overcast = 45; //Overcast
+                    _rain = 45; //Rain
+                    _thunder = 45; //Thunder
+                    _lightrain = 45; //Light rain
+                    _slrain = 45; //Smoggy light rain
+                    _vlsnow = 45; //Very light Snow
+                    _wlsnow = 45; //Windy light Snow
+                    _lightsnow = 45; //Light snow
+                    _unknown = 0; //Unknown (No Effect)*/
+                }
+            }
+
             getNewWeatherID();
             getWeatherName();
         }
 
-        public void getNewWeatherID()
+        private void getNewWeatherID()
         {
             var _loadedDie = new LoadedDie(new int[] {
                     155, //Extra Sunny
@@ -40,7 +92,7 @@ namespace TerraTex_RL_RPG.Lib.Helper.Weather
             weatherID = _loadedDie.NextValue();
         }
 
-        public void getWeatherName()
+        private void getWeatherName()
         {
             switch (weatherID)
             {
@@ -59,6 +111,16 @@ namespace TerraTex_RL_RPG.Lib.Helper.Weather
                 case 12: weatherName = "Light snow"; break;
                 case 13: weatherName = "Unknown (No Effect)"; break;
             }
+        }
+
+        private void generateWeathernBasedonDateTime()
+        {
+
+        }
+
+        private void generateWeatherBasedonConfigVars()
+        {
+
         }
     }
 }
