@@ -85,6 +85,7 @@
     <Compile Include="Lib\Helper\Password.cs" />
     <Compile Include="Lib\Helper\Player.cs" />
     <Compile Include="Lib\Helper\Weather\Core.cs" />
+    <Compile Include="Lib\Helper\Weather\WeatherVarsOnDateTime.cs" />
     <Compile Include="Lib\Threads\UpdatePlayerPlayTime.cs" />
     <Compile Include="Lib\Threads\UpdateWeather.cs" />
     <Compile Include="Lib\User\Management\MoneyManager.cs" />
